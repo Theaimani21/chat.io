@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+
+.welcome-view-container {
+	width: 100%;
+	height: 100%;
+	background-color: $neoPink;
+	border: 20px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.default-avatar {
+		height: 300px;
+		width: 300px;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+	.input-container {
+		margin-top: 20px;
+		width: 300px;
+		label {
+			font-weight: bold;
+			font-size: 1.3em;
+			display: block;
+		}
+		input {
+			margin-top: 10px;
+			width: 100%;
+		}
+	}
+}

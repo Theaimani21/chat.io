@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.room-btn  {
+	width: 100%;
+	background-color: $smoothGrey;
+	color: $gunMetal;
+	padding: 10px 20px;
+	// border: none;
+	border: solid 2px $neoPink;
+	transition: background-color 0.5s;
+	&:hover {
+		cursor: pointer;
+		// background-color: ;
+		background-color: $slimeGreen;
+		color: darken($gunMetal, 10%);
+	}
+}

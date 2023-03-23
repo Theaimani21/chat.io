@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.rooms-container {
+	display: flex;
+	flex-direction: column;
+	// align-items: center;
+	height: 100%;
+	width: 300px;
+	padding: 40px 4px;
+	background-color: $neoPink;
+	.rooms-heading {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+    .rooms-subheading {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 10px;
+        margin-top: 20px;
+	}
+	div.rooms-list {
+        max-height: 200px;
+        width: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		text-align: center;
+	}
+}

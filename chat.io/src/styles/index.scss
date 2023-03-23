@@ -1,0 +1,87 @@
+@import 'variables.scss';
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.container {
+	margin: 0;
+	height: 100%;
+}
+
+// body {
+// 	// margin: 0;
+// 	// background-color: $neoPink;
+// 	// border: 20px solid black;
+// }
+
+.page {
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+label,
+input,
+button {
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	margin: 0;
+}
+
+h1 {
+	font-size: 34px;
+	font-weight: 700;
+	// line-height: 26.4px;
+}
+h2 {
+	font-size: 30px;
+	font-weight: 700;
+	// line-height: 26.4px;
+}
+h3 {
+	font-size: 26px;
+	font-weight: 700;
+	// line-height: 15.4px;
+}
+h4 {
+	font-size: 22px;
+	font-weight: 700;
+	// line-height: 26.4px;
+}
+h5 {
+	font-size: 20px;
+	font-weight: 600;
+}
+p {
+	font-size: 18px;
+	font-weight: 400;
+	// line-height: 20px;
+}
+
+// blockquote {
+// 	font-family: Tahoma, Verdana, Segoe, sans-serif;
+// 	font-size: 21px;
+// 	font-style: normal;
+// 	font-variant: normal;
+// 	font-weight: 400;
+// 	line-height: 30px;
+// }
+// pre {
+// 	font-family: Tahoma, Verdana, Segoe, sans-serif;
+// 	font-size: 13px;
+// 	font-style: normal;
+// 	font-variant: normal;
+// 	font-weight: 400;
+// 	line-height: 18.5714px;
+// }
