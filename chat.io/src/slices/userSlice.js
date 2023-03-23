@@ -8,6 +8,7 @@ const userSlice = createSlice({
 			state.nickname = action.payload;
 		},
         setOnlineUsers: (state, action) => {
+			console.log('updating online users in slice')
             state.onlineUsers = action.payload
         }
 	},

@@ -46,7 +46,7 @@ const Rooms = () => {
 
 	return (
 		<div className="rooms-container">
-			<h2 className="rooms-heading">Chat Rooms</h2>
+			<h2 className="sidebar-heading">Chat Rooms</h2>
 			<h4 className="rooms-subheading">Create a new room</h4>
 			<RoomButton onClick={() => setNewRoomDialogOpen(true)}>Create room</RoomButton>
 			<h4 className="rooms-subheading">Join an active room</h4>

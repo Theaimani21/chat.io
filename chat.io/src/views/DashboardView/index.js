@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './styles.scss';
 import socket from '../../services/socketService';
@@ -6,6 +6,7 @@ import socket from '../../services/socketService';
 import DashSidebar from '../../components/DashSidebar/DashSidebar';
 import { useNavigate } from 'react-router-dom';
 import { setOnlineUsers } from '../../slices/userSlice';
+import ChatBox from '../../components/ChatBox/ChatBox';
 
 
 const DashboardView = () => {
@@ -26,7 +27,7 @@ const DashboardView = () => {
 		console.log('not in sever users');
 		navigate('/');
 	}
-	}, [])
+	}, [currentUser, onlineUsers])
 	
 
 	useEffect(() => {
@@ -38,7 +39,7 @@ const DashboardView = () => {
 			socket.on('userlist', (users) => {
 				dispatch(setOnlineUsers(users));
 			});
-		}, 5000);
+		}, 2000);
 
 		return () => {
 			clearInterval(interval);
@@ -51,6 +52,7 @@ const DashboardView = () => {
 	return (
 		<div className="dashboard">
 			<DashSidebar />
+			<ChatBox />
 		</div>
 	);
 };

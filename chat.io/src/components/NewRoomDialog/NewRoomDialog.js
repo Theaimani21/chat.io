@@ -13,7 +13,6 @@ import {
 const NewRoomDialog = ({ open, onClose, roomNames }) => {
 	const [roomName, setRoomName] = useState('');
 	const [roomPass, setRoomPass] = useState('');
-	const [newRoom, setNewRoom] = useState('');
 
 	// Keep state of validation errors
 	const [formErrors, setFormErrors] = useState('');
