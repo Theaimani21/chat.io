@@ -22,7 +22,7 @@ Example:
 socket.emit("adduser", "GnoMe", function(available){
     if (available){
         // The "GnoMe" username is not taken!
-    }
+    }   
 });
 ```
 

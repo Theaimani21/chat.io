@@ -25,6 +25,7 @@ var users = {};
 rooms.lobby = new Room();
 rooms.lobby.setTopic("Welcome to the lobby!");
 
+
 io.on("connection", function (socket) {
   //This gets performed when a user joins the server.
   socket.on("adduser", function (username, fn) {
@@ -404,6 +405,6 @@ function Room() {
   };
 }
 
-server.listen(8080, () => {
-  console.log(`Listening on :8080`);
+server.listen(8180, () => {
+  console.log(`Listening on :8180`);
 });
