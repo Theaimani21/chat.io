@@ -5,7 +5,7 @@ import './styles.scss';
 import emojiPng from '../../resources/Drunk-Emoji.png';
 import Button from '../../components/Button';
 import socket from '../../services/socketService';
-import { setUser, setOnlineUsers } from '../../slices/userSlice';
+import { setUser, setOnlineUsers } from '../../slices/chatIoSlice';
 
 const WelcomeView = () => {
 	const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const WelcomeView = () => {
 						// console.log('userlist in welcome: ' + users);
 						dispatch(setOnlineUsers(users));
 						socket.off('userlist');
-						navigate('/dashboard');
+						navigate('/dashboard/home');
 					});
 
 				

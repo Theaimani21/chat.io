@@ -7,9 +7,9 @@ import './styles.scss';
 
 const PrivateChats = () => {
 	// Get user from store
-	const users = useSelector((state) => state.user.onlineUsers);
+	const users = useSelector((state) => state.chatIo.onlineUsers);
 	// Get online users from store
-	const currUser = useSelector((state) => state.user.nickname);
+	const currUser = useSelector((state) => state.chatIo.user);
 	
 	// Variable for private chat online users
 	let privChatUsers;

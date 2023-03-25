@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './slices/userSlice';
+import chatIoReducer from './slices/chatIoSlice';
 
 export default configureStore({
   reducer: {
-    user: userReducer,
+    chatIo: chatIoReducer,
   },
 });

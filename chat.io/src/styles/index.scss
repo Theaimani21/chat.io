@@ -34,7 +34,8 @@ h5,
 p,
 label,
 input,
-button {
+button,
+.button {
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
 	margin: 0;
 }
@@ -59,11 +60,11 @@ h4 {
 	font-weight: 700;
 	// line-height: 26.4px;
 }
-h5 {
+h5, .button {
 	font-size: 18px;
 	font-weight: 600;
 }
-p {
+p, input {
 	font-size: 18px;
 	font-weight: 400;
 	// line-height: 20px;

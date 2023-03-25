@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PrivateChats from '../PrivateChats/PrivateChats';
 import Rooms from '../Rooms/Rooms';
 import './styles.scss';
 
 const DashSidebar = () => {
 
-  const user = useSelector((state) => state.user.nickname)
+  const user = useSelector((state) => state.chatIo.user)
   
   return (
     <div className="sidebar-container">

@@ -90,8 +90,8 @@ const NewRoomDialog = ({ open, onClose, roomNames }) => {
 				</DialogContentText>
 				<TextField
 					margin="dense"
-					id="password"
-					label="Email password"
+					id="newRoomPassword"
+					label="Room password"
 					type="password"
 					fullWidth
 					onChange={(e) => setRoomPass(e.target.value)}

@@ -1,0 +1,19 @@
+toDo 
+
+- when user leaves chat, need to send to chatIo server and notify leave
+    - add leave button to chat
+    - add to chat button handler, that if a user is in a chat
+      and selects another chat then, they shoud leave that 
+      chat and then enter the next one
+
+- add topic to chat
+
+- when you ceate a room you should enter that room
+
+- add a message that shows if chat has no messages
+
+- implement chat op, topic, bann settings
+
+- (* later) show users that are online in chat 
+
+- add proptypes to everything that uses props

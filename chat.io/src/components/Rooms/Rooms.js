@@ -13,7 +13,6 @@ const Rooms = () => {
 	// Keep state of new room dialog
 	const [newRoomDialogOpen, setNewRoomDialogOpen] = useState(false);
 
-
 	useEffect(() => {
 		// create interval so that room list updates every 2 seconds
 		const interval = setInterval(() => {
@@ -31,18 +30,11 @@ const Rooms = () => {
 		};
 	}, []);
 
-	// useEffect(() => {
-
-	// 	return () => {
-	// 	};
-	// }, []);
-	// console.log('rooms in room component:');
-	// console.log(rooms);
 	const toggleNewRoomDialog = () => {
 		setNewRoomDialogOpen(!newRoomDialogOpen);
 	};
 
-	const mapRooms = roomKeys.map((key) => <Room key={key} name={key} room={rooms[key]} />);
+	const mapRooms = roomKeys.map((key) => <Room key={key} roomName={key} room={rooms[key]} />);
 
 	return (
 		<div className="rooms-container">
