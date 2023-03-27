@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.msg-container {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	margin: 10px 5px;
+	padding: 20px 25px 20px 30px;
+	border-radius: 10px;
+  border-radius: 50px 40px 40px 15px;
+	.msg {
+		padding: 10px 5px;
+	}
+	.msg-date {
+        font-size: 15px;
+	}
+}
+
+.msg-from-other {
+	background-color: $timberWolf;
+    .msg-sender {
+        color: $gunMetal;
+	}
+	.msg-date {
+        color: grey;
+	}
+}
+
+.msg-from-user {
+	background-color: $theBlue;
+    .msg-sender {
+        color: $tangyOrange;
+	}
+	
+	.msg-date {
+        // color: rgb(63, 63, 63);
+        color: rgb(63, 63, 63);
+        color: $theDarkerBlue;
+
+	}
+}

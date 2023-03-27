@@ -9,15 +9,26 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setChatHistory, setCurrentChat } from '../../slices/chatIoSlice';
 
-const NewRoomDialog = ({ open, onClose, roomNames }) => {
+const NewRoomDialog = ({ open, onClose }) => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const currentChat = useSelector((state) => state.chatIo.currentChat);
+
+	const availableRooms = useSelector((state) => state.chatIo.availableRooms)
+
+
 	const [roomName, setRoomName] = useState('');
 	const [roomPass, setRoomPass] = useState('');
 
 	// Keep state of validation errors
 	const [formErrors, setFormErrors] = useState('');
 
-
+	// Validate room name
 	const validateRoom = () => {
 		// array for errors
 		const errors = [];
@@ -25,7 +36,7 @@ const NewRoomDialog = ({ open, onClose, roomNames }) => {
 		if (roomName.trim().length < 1) {
 			errors.push('Invalid room name');
 		}
-		else if (roomNames.includes(roomName)) {
+		else if (availableRooms.includes(roomName)) {
 			errors.push('Room name id already taken');
 		}
 
@@ -51,13 +62,19 @@ const NewRoomDialog = ({ open, onClose, roomNames }) => {
 
 			socket.emit('joinroom', roomInfo, (fn) => {
 				if (fn) {
-					console.log('room created');
-					// console.log(joinObj);
+					
 					// Reset form fields
 					setRoomName('');
 					setRoomPass('');
 					// Close modal
 					onClose();
+					if (currentChat.length > 0 && availableRooms.includes(currentChat)) {
+						socket.emit('partroom', currentChat);
+					}
+					dispatch(setCurrentChat(roomInfo.room));
+					dispatch(setChatHistory({room: roomInfo.room, history: []}))
+					// ------- might have to update topic as well
+					navigate('/dashboard/chatRoom');
 				} else {
 					// Spurning um að breyta þessu þannig að það birtist annað staðar í forminu
 					setFormErrors('Could not create room try again');

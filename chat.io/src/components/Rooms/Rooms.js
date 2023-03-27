@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import socket from '../../services/socketService';
+import { setAvailableRooms } from '../../slices/chatIoSlice';
 import NewRoomDialog from '../NewRoomDialog/NewRoomDialog';
 import Room from '../Room/Room';
 import RoomButton from '../RoomButton/RoomButton';
 import './styles.scss';
 
 const Rooms = () => {
-	// Keep state of rooms
-	const [rooms, setRooms] = useState({});
-	// Keep state of room keys
-	const [roomKeys, setRoomKeys] = useState([]);
+	const dispatch = useDispatch();
+
+	// Get state of available rooms in store
+	const availableRooms = useSelector((state) => state.chatIo.availableRooms);
+
 	// Keep state of new room dialog
 	const [newRoomDialogOpen, setNewRoomDialogOpen] = useState(false);
 
+
+	// might also want to call when user joins from main page loggin
 	useEffect(() => {
-		// create interval so that room list updates every 2 seconds
+		// Create interval so that room list updates every 0.5 seconds
 		const interval = setInterval(() => {
 			// Get the initial room list
 			socket.emit('rooms');
 			socket.on('roomlist', (allRooms) => {
-				setRooms(allRooms);
-				setRoomKeys(Object.keys(allRooms));
+				// Update state of available rooms in store
+				dispatch(setAvailableRooms(Object.keys(allRooms)));
 			});
-		}, 2000);
+		}, 250);
 
 		return () => {
 			clearInterval(interval);
@@ -34,7 +39,7 @@ const Rooms = () => {
 		setNewRoomDialogOpen(!newRoomDialogOpen);
 	};
 
-	const mapRooms = roomKeys.map((key) => <Room key={key} roomName={key} room={rooms[key]} />);
+	const mapRooms = availableRooms.map((key) => <Room key={key} roomName={key} />);
 
 	return (
 		<div className="rooms-container">
@@ -46,7 +51,6 @@ const Rooms = () => {
 			<NewRoomDialog
 				open={newRoomDialogOpen}
 				onClose={() => toggleNewRoomDialog()}
-				roomNames={roomKeys}
 			/>
 		</div>
 	);

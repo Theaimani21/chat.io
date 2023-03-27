@@ -1,19 +1,76 @@
 toDo 
 
+
+
+
+
+- Add alters for users that state has changed because of op, ban and kick
+
+- add proptypes to everything that uses props
+
+--------- implement later ----------------
+
+- reset chat topic, where you reset chat history
+
+- add scroll to chat msg container
+
+- add a message that shows if chat has no messages
+
+
+
+--------- implement if time ----------------
+
+- * add topic to chat
+
+
+
+************************* KOMIÐ ********************************
+
+- chat history does not show until you send a new message.
+    - when you leave a room and then renter the chat history is gone
+
 - when user leaves chat, need to send to chatIo server and notify leave
     - add leave button to chat
     - add to chat button handler, that if a user is in a chat
       and selects another chat then, they shoud leave that 
       chat and then enter the next one
 
-- add topic to chat
+
+- chat input bar does not clear after message is sent
+
+- (you are added to the ops list) when you join a room, you are not added to room user list
+
+
+- (you become a op, when you leave you are no longer an op)
+    - when user creates a room 
+        - check if they are in a room, if they are leave the room and enter the new one
+
 
 - when you ceate a room you should enter that room
 
-- add a message that shows if chat has no messages
-
-- implement chat op, topic, bann settings
+- settings implement chat op, topic, bann 
 
 - (* later) show users that are online in chat 
 
-- add proptypes to everything that uses props
+- The creator/ops can also ban a user,
+  which means he/she won’t be able to join the room again
+
+
+- The creator/ops can give other group members an “op”. 
+  An op is similar to granting someone admin privilege
+
+
+
+================================================================
+// [
+			//	{sender: 'max',
+			//	 messages: [{ sender:'max', msg: 'hello', timestamp: 21.01.2023 },
+			// 							{ sender:'thisUser', msg: 'hi max', timestamp: 22.01.2023 },
+			// 							{ sender:'max', msg: 'can we go now', timestamp: 12.10.2023 }
+			//						 ]
+			//  },
+			//  {sender: 'sally',
+			//	 messages: [{ sender:'sally', msg: 'we need to talk', timestamp: 01.21.2023 }]
+			//  },
+			//  ...
+			// ]

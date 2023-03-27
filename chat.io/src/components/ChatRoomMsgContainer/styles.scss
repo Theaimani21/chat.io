@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+
+.chat-content {
+    width: 100%;
+    max-height: 100%;
+    // flex-grow: 1;
+    // max-height: 780px; // ÞArf að breyta þetta í eitthvað annað til þess að hæðin sé rétt
+    border: 3px solid $theBlue;
+    overflow-y: auto;
+}

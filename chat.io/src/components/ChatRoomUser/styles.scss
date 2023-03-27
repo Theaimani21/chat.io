@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.online-user {
+	padding: 8px 15px;
+	border-radius: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: white;
+  color: black;
+}
+
+.isUser {
+	color: $tangyOrange;
+
+}

@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+
+.chat-topbar-container {
+	display: flex;
+	flex-direction: column;
+	.chat-topbar {
+		display: flex;
+		.chatbox-heading {
+			display: flex;
+			align-items: center;
+			flex-grow: 1;
+			// height: 50px;
+			background-color: $neoPink;
+			padding: 10px 20px;
+		}
+	}
+	.chatbox-topic {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+		background-color: $slimeGreen;
+	}
+}
