@@ -9,6 +9,7 @@ import {
 	MenuList,
 	Divider,
 } from '@mui/material';
+import { MdSettings } from 'react-icons/md';
 import './styles.scss';
 import KickUserDialog from '../KickUserDialog/KickUserDialog';
 import AddOpDialog from '../AddOpDialog/AddOpDialog';
@@ -29,7 +30,6 @@ const ChatRoomSettingsMenu = () => {
 	// Ban user dialog state
 	const [banUserDialog, setBanUserDialog] = useState(false);
 
-
 	const handleClick = () => {
 		setMenuOpen(true);
 	};
@@ -45,8 +45,9 @@ const ChatRoomSettingsMenu = () => {
 				aria-controls={menuOpen ? 'composition-menu' : undefined}
 				aria-haspopup="true"
 				aria-expanded={menuOpen}
-				onClick={() => handleClick()}>
-				Room Settings
+				onClick={() => handleClick()}
+				>
+				<MdSettings className='settings-icon'/>
 			</Button>
 			<Popper
 				open={menuOpen}
@@ -54,15 +55,14 @@ const ChatRoomSettingsMenu = () => {
 				role={undefined}
 				placement="bottom-start"
 				transition
-				disablePortal>
+				disablePortal
+				className='setting-dropdown'>
 				{({ TransitionProps, placement }) => (
 					<Grow
 						{...TransitionProps}
-						style={
-							{
-								// transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
-							}
-						}>
+						style={{
+							transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
+						}}>
 						<Paper>
 							<ClickAwayListener onClickAway={() => handleClose()}>
 								<MenuList
@@ -105,18 +105,9 @@ const ChatRoomSettingsMenu = () => {
 					</Grow>
 				)}
 			</Popper>
-			<KickUserDialog
-				open={kickUserDialog}
-				close={() => setKickUserDialog(false)}
-			/>
-			<AddOpDialog 
-				open={addOpDialog}
-				close={() => setAddOpDialog(false)}
-			/>
-			<BanUserDialog
-				open={banUserDialog}
-				close={() => setBanUserDialog(false)}
-			/>
+			<KickUserDialog open={kickUserDialog} close={() => setKickUserDialog(false)} />
+			<AddOpDialog open={addOpDialog} close={() => setAddOpDialog(false)} />
+			<BanUserDialog open={banUserDialog} close={() => setBanUserDialog(false)} />
 		</div>
 	);
 };

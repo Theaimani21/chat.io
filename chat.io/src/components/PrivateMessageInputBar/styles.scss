@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.msg-bar-container {
+	background-color: darken($goGoGreen, 10%);
+	input {
+		border: none;
+	}
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import socket from '../../services/socketService';
 import {
@@ -21,7 +22,7 @@ const KickUserDialog = ({ open, close }) => {
 	const roomUsers = useSelector((state) => state.chatIo.chatUsers);
 
 	// Get state of current room from store
-	const currentRoom= useSelector((state) => state.chatIo.currentChat);
+	const currentRoom = useSelector((state) => state.chatIo.currentChat);
 
 	// State for value of user selected to be kicked
 	const [value, setValue] = useState('');
@@ -43,19 +44,18 @@ const KickUserDialog = ({ open, close }) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-    // If nothing has been selected the show error message
+		// If nothing has been selected the show error message
 		if (value === '') {
 			setHelperText('Please select a user to kick.');
 			setError(true);
-		} 
-    else {
+		} else {
 			// Kick the user from the room
-			socket.emit('kick', { user: value, room: currentRoom}, (isKicked) => {
+			socket.emit('kick', { user: value, room: currentRoom }, (isKicked) => {
 				if (isKicked) {
-          // add alert if time
+					// add alert if time
 					console.log(value + ' was kicked');
 				} else {
-          // add alert if time
+					// add alert if time
 					console.log(value + ' was not kicked');
 				}
 			});
@@ -76,7 +76,7 @@ const KickUserDialog = ({ open, close }) => {
 			<FormControlLabel key={user} value={user} control={<Radio />} label={user} />
 		));
 	}
-	
+
 	return (
 		<Dialog
 			open={open}
@@ -115,6 +115,11 @@ const KickUserDialog = ({ open, close }) => {
 			</DialogContent>
 		</Dialog>
 	);
+};
+
+KickUserDialog.propTypes = {
+	open: PropTypes.bool.isRequired,
+	close: PropTypes.func.isRequired,
 };
 
 export default KickUserDialog;

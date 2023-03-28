@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import RoomButton from '../RoomButton/RoomButton';
+import ActionButton from '../ActionButton/ActionButton';
 import socket from '../../services/socketService';
 import './styles.scss';
-import { setCurrentChat, setChatHistory, setChatTopic, resetAllChatInfo } from '../../slices/chatIoSlice';
+import { setCurrentChat, resetAllChatInfo } from '../../slices/chatIoSlice';
 import { useNavigate } from 'react-router-dom';
 
 const OnlineUser = ({ recipientName }) => {
@@ -38,18 +39,21 @@ const OnlineUser = ({ recipientName }) => {
 			socket.emit('partroom', currentRoom);
 		}
 
-		// Reset chat hitsory and chat topic store state
-		// dispatch(setChatHistory({ room: '', history: [] }));
-		// dispatch(setChatTopic({ room: '', topic: '' }));
-    dispatch(resetAllChatInfo());
-
+		// Reset all chat info store states
+		dispatch(resetAllChatInfo());
 	};
 
 	return (
 		<>
-			<RoomButton onClick={() => handleOpenPrivateMessage()}>{recipientName}</RoomButton>
+			<ActionButton onClick={() => handleOpenPrivateMessage()} classes={'priv-room'}>
+				{recipientName}
+			</ActionButton>
 		</>
 	);
+};
+
+OnlineUser.propTypes = {
+	recipientName: PropTypes.string.isRequired,
 };
 
 export default OnlineUser;

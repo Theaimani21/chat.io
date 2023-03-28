@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import {
 	Button,
@@ -10,8 +11,8 @@ import {
 } from '@mui/material';
 import './styles.scss';
 
-
 const LeaveRoomDialog = ({ open, submit, cancel }) => {
+
 	// Get current room state
 	const currentRoom = useSelector((state) => state.chatIo.currentChat);
 
@@ -34,5 +35,11 @@ const LeaveRoomDialog = ({ open, submit, cancel }) => {
 		</div>
 	);
 };
+
+LeaveRoomDialog.propTypes = {
+	open: PropTypes.bool.isRequired,
+	submit: PropTypes.func.isRequired,
+	cancel: PropTypes.func.isRequired
+}
 
 export default LeaveRoomDialog;

@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import AngelEmoji from '../resources/AngelEmoji.png';
 
 const initialStateOptions = {
 	user: '',
+	userEmoji: AngelEmoji,
 	onlineUsers: [],
 	availableRooms: [],
 	privateMessages: [],
@@ -10,6 +12,7 @@ const initialStateOptions = {
 	chatTopic: '',
 	chatUsers: [],
 	chatOps: [],
+	isUserRoomOp: false,
 };
 
 const chatIoSlice = createSlice({
@@ -19,6 +22,10 @@ const chatIoSlice = createSlice({
 		setUser: (state, action) => {
 			// Update current user to new user
 			state.user = action.payload;
+		},
+		setUserEmoji: (state, action) => {
+			// Update current userEmoji to new Emoji
+			state.userEmoji = action.payload;
 		},
 		setOnlineUsers: (state, action) => {
 			// Update online user list to new online user list
@@ -77,7 +84,7 @@ const chatIoSlice = createSlice({
 				state.privateMessages[index].messages = privMsglist;
 			} else {
 				// Create new private sender info object
-				const newPrivMsgInfo = { sender: action.payload.sender, messages: [ newMsg ] };
+				const newPrivMsgInfo = { sender: action.payload.sender, messages: [newMsg] };
 				// Get state of privateMessages and add new private sender info object
 				const updatedPivMessages = state.privateMessages;
 				updatedPivMessages.push(newPrivMsgInfo);
@@ -85,7 +92,6 @@ const chatIoSlice = createSlice({
 				// Update state of privateMessages
 				state.privateMessages = updatedPivMessages;
 			}
-			
 		},
 		addSentPrivateMessage: (state, action) => {
 			// payload => msg, timestamp, recipient
@@ -126,14 +132,22 @@ const chatIoSlice = createSlice({
 			state.chatTopic = '';
 			// Reset current chat to initial state
 			state.currentChat = '';
-
-			
+			// Reset is user room op to false
+			state.isUserRoomOp = false;
+		},
+		setIsUserRoomOp: (state, action) => {
+			// Check if the action room is the current room
+			if (action.payload.room === state.currentChat) {
+				// Update the is user room op to isRoomOp value
+				state.isUserRoomOp = action.payload.isRoomOp;
+			}
 		},
 	},
 });
 
 export const {
 	setUser,
+	setUserEmoji,
 	setOnlineUsers,
 	setAvailableRooms,
 	setCurrentChat,
@@ -142,6 +156,7 @@ export const {
 	setChatUsersInfo,
 	addPrivateMessage,
 	addSentPrivateMessage,
-	resetAllChatInfo
+	resetAllChatInfo,
+	setIsUserRoomOp,
 } = chatIoSlice.actions;
 export default chatIoSlice.reducer;

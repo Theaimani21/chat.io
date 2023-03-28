@@ -11,6 +11,8 @@ const DashSidebar = () => {
 
 	const user = useSelector((state) => state.chatIo.user);
 
+	const userEmoji = useSelector((state) => state.chatIo.userEmoji);
+
 	// Update private message when reviced private message from server
 	useEffect(() => {
 		// Listent to private message updates
@@ -20,16 +22,23 @@ const DashSidebar = () => {
 			dispatch(addPrivateMessage({ sender: sender, msg: message, timestamp: timestamp }));
 		});
 
-    return () => {
+		return () => {
 			socket.off('recv_privatemsg');
 		};
 	});
 
 	return (
 		<div className="sidebar-container">
-			<h1>User: {user}</h1>
-			<Rooms />
-			<OnlineUsers />
+			<div className="sidebar-scroll-container">
+				<div className="sidebar-header-container">
+					<img src={userEmoji} alt="user emoji" className="user-emoji" />
+					<h2 className="dash-user-heading">{user}</h2>
+				</div>
+				<h3 className="sidebar-heading room">Chat Rooms</h3>
+				<Rooms />
+				<h3 className="sidebar-heading priv">Online users</h3>
+				<OnlineUsers />
+			</div>
 		</div>
 	);
 };

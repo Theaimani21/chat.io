@@ -1,20 +1,15 @@
 toDo 
 
 
+- spurja hvort það eigi að vera hægt að annar op breyti öðrum op
 
-
-
-- Add alters for users that state has changed because of op, ban and kick
-
-- add proptypes to everything that uses props
+- disable room button that you are in or remove it
 
 --------- implement later ----------------
 
 - reset chat topic, where you reset chat history
 
-- add scroll to chat msg container
-
-- add a message that shows if chat has no messages
+- add 
 
 
 
@@ -45,6 +40,7 @@ toDo
     - when user creates a room 
         - check if they are in a room, if they are leave the room and enter the new one
 
+- Add alters for users that state has changed because of op, ban and kick
 
 - when you ceate a room you should enter that room
 
@@ -55,9 +51,18 @@ toDo
 - The creator/ops can also ban a user,
   which means he/she won’t be able to join the room again
 
+- fix op alert in ChatRoom.js
+	- // Need to have a boolean so that the user only get the alert once!
 
 - The creator/ops can give other group members an “op”. 
   An op is similar to granting someone admin privilege
+
+- add scroll to chat msg container
+
+- add a message that shows if chat has no messages
+
+- add proptypes to everything that uses props
+
 
 
 

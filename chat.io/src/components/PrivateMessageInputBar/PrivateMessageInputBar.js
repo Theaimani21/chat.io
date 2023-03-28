@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import socket from '../../services/socketService';
 import { addSentPrivateMessage } from '../../slices/chatIoSlice';
-import Button from '../Button';
+import ActionButton from '../ActionButton/ActionButton';
+import { MdSend } from 'react-icons/md';
 import './styles.scss';
 
 const PrivateMessageInputBar = () => {
@@ -21,16 +22,17 @@ const PrivateMessageInputBar = () => {
 				message: message,
 			};
 
-			const timestamp = new Date().toString(); 
+			const timestamp = new Date().toString();
 
 			// Send message to chatIo server
 			socket.emit('privatemsg', msgData, (msgSent) => {
 				if (msgSent) {
 					console.log('message was sent');
 					// Update store with new message
-					dispatch(addSentPrivateMessage({msg: message, timestamp: timestamp, recipient: currentChat}))
-				}
-				else {
+					dispatch(
+						addSentPrivateMessage({ msg: message, timestamp: timestamp, recipient: currentChat })
+					);
+				} else {
 					console.log('message was not sent');
 				}
 			});
@@ -50,7 +52,9 @@ const PrivateMessageInputBar = () => {
 				value={message}
 				onChange={(e) => setMessage(e.target.value)}
 			/>
-			<Button onClick={() => handleSendMsg()}>Send</Button>
+			<ActionButton onClick={() => handleSendMsg()} classes="send-msg">
+				Send <MdSend className="send-icon" />
+			</ActionButton>
 		</div>
 	);
 };

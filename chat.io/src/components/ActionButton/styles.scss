@@ -1,0 +1,129 @@
+@import '../../styles/variables.scss';
+
+.room-btn {
+	display: inline-block;
+	width: 80%;
+	padding: 15px 20px;
+	transition: background-color 0.5s;
+	border-radius: 0.15em;
+	box-sizing: border-box;
+	color: $WWhite;
+	background-color: $theBlue;
+	box-shadow: inset 0 -8px 0 -4px $theDarkerBlue;
+	text-align: center;
+	margin-bottom: 5px;
+	font-size: 16px;
+	font-weight: 600;
+	border: none;
+	overflow-wrap: break-word;
+	&:hover {
+		cursor: pointer;
+		color: darken($gunMetal, 10%);
+	}
+}
+.room-btn.normal-room-btn {
+	box-shadow: inset 0 -10px 0 -4px $BBlack;
+
+	&:active {
+		box-shadow: inset 0 0 0 0;
+	}
+}
+.room-btn.create-room {
+	background-color: $goGoGreen;
+	box-shadow: inset 0 -10px 0 -4px $darkGoGoGreen;
+	&:hover {
+		cursor: pointer;
+		color: $gunMetal;
+	}
+	&:active {
+		// box-shadow: inset 0 0 0 0;
+		box-shadow: inset 0px 10px 0px -4px $skyBlue;
+	}
+}
+.room-btn.join-room {
+	background-color: $neoPink;
+	box-shadow: inset 0 -10px 0 -4px darken($neoPink, 25%);
+	&:hover {
+		cursor: pointer;
+		color: darken($gunMetal, 20%);
+	}
+	&:active {
+		// box-shadow: inset 0 0 0 0;
+		box-shadow: inset 0px 10px 0px -4px $skyBlue;
+	}
+}
+.room-btn.priv-room {
+	background-color: $purpleRain;
+	box-shadow: inset 0 -10px 0 -4px darken($purpleRain, 20%);
+	&:hover {
+		cursor: pointer;
+		color: darken($gunMetal, 20%);
+	}
+	&:active {
+		// box-shadow: inset 0 0 0 0;
+		box-shadow: inset 0px 10px 0px -4px $skyBlue;
+	}
+}
+.room-btn.enter-chatIo {
+	width: 100%;
+	padding: 10px 20px;
+	background-color: $tangyOrange;
+	box-shadow: 0 6px darken($tangyOrange, 20%);
+	margin-bottom: 15px;
+	&:hover {
+		cursor: pointer;
+		color: darken($gunMetal, 20%);
+	}
+	&:active {
+		box-shadow: 0 0;
+		transform: translateY(6px);
+	}
+}
+
+.room-btn.leave-room {
+	width: auto;
+	display: flex;
+	margin: 0;
+	justify-self: center;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: $theBlue;
+	text-transform: uppercase;
+	box-shadow: inset 0 -6px darken($theBlue, 20%);
+	.leave-icon {
+		margin-left: 8px;
+		height: 25px;
+		width: 25px;
+	}
+	&:hover {
+		cursor: pointer;
+		color: darken($gunMetal, 20%);
+	}
+	&:active {
+		box-shadow: inset 0px 6px darken($theBlue, 20%);
+	}
+}
+
+.room-btn.send-msg {
+	width: auto;
+	display: flex;
+	margin: 0;
+	justify-self: center;
+	align-items: center;
+	padding: 15px 35px;
+	background-color: $goGoGreen;
+	text-transform: uppercase;
+	box-shadow: inset 0 -6px darken($goGoGreen, 20%);
+	.send-icon {
+		margin-left: 8px;
+		height: 20px;
+		width: 20px;
+	}
+	&:hover {
+		cursor: pointer;
+		color: darken($gunMetal, 20%);
+	}
+	&:active {
+		transform: translateY(4px);
+	}
+}

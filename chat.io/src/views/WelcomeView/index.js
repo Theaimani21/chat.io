@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
-import emojiPng from '../../resources/Drunk-Emoji.png';
-import Button from '../../components/Button';
+import emojiPng from '../../resources/DrunkEmoji.png';
+import ActionButton from '../../components/ActionButton/ActionButton';
 import socket from '../../services/socketService';
 import { setUser, setOnlineUsers } from '../../slices/chatIoSlice';
 
@@ -20,7 +20,7 @@ const WelcomeView = () => {
 		const trimedNick = nick.trim();
 
 		if (trimedNick === '') {
-			errorMessage = 'Nickname not valid, please try again!';
+			errorMessage = 'You must enter a nickname, please try again!';
 		}
 
 		if (errorMessage.length > 0) {
@@ -37,21 +37,18 @@ const WelcomeView = () => {
 		if (validateNick()) {
 			socket.emit('adduser', nick.trim(), function (available) {
 				if (available) {
-					
 					dispatch(setUser(nick.trim()));
 					// Get the initial users list
 					socket.emit('users');
-					// Add online users to redux state 
+					// Add online users to redux state
 					socket.on('userlist', (users) => {
-						// console.log('userlist in welcome: ' + users);
 						dispatch(setOnlineUsers(users));
 						socket.off('userlist');
+						// Navigate to home page
 						navigate('/dashboard/home');
 					});
-
-				
 				} else {
-					setFailedMessage('Username taken, please try again! ');
+					setFailedMessage('Nickname not valid, please try again!');
 				}
 			});
 		}
@@ -76,10 +73,10 @@ const WelcomeView = () => {
 					value={nick}
 					onChange={(e) => setNick(e.target.value)}
 				/>
-				<Button onClick={() => onChooseNickname()} style={{ float: 'right', marginTop: 10 }}>
+				<ActionButton onClick={() => onChooseNickname()} classes="enter-chatIo">
 					Enter
-				</Button>
-				<p>{failedMessage}</p>
+				</ActionButton>
+				<p className="error-message">{failedMessage}</p>
 			</div>
 		</div>
 	);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
 	Button,
 	TextField,
@@ -10,7 +11,6 @@ import {
 } from '@mui/material';
 
 const PasswordDialog = ({ open, cancel, submit, password, setPassword, errorMessage }) => {
-
 	return (
 		<Dialog open={open} onClose={cancel}>
 			<DialogTitle>Password required to join room </DialogTitle>
@@ -26,7 +26,7 @@ const PasswordDialog = ({ open, cancel, submit, password, setPassword, errorMess
 					type="password"
 					fullWidth
 					onChange={(e) => setPassword(e.target.value)}
-                    value={password}
+					value={password}
 				/>
 			</DialogContent>
 			<DialogActions>
@@ -35,6 +35,15 @@ const PasswordDialog = ({ open, cancel, submit, password, setPassword, errorMess
 			</DialogActions>
 		</Dialog>
 	);
+};
+
+PasswordDialog.propTypes = {
+	open: PropTypes.bool.isRequired,
+	cancel: PropTypes.func.isRequired,
+	submit: PropTypes.func.isRequired,
+	password: PropTypes.string.isRequired,
+	setPassword: PropTypes.func.isRequired,
+	errorMessage: PropTypes.string.isRequired,
 };
 
 export default PasswordDialog;

@@ -3,21 +3,27 @@
 .chat-topbar-container {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	height: auto;
+	background-color: $yHello;
 	.chat-topbar {
 		display: flex;
+		height: 70px;
 		.chatbox-heading {
 			display: flex;
 			align-items: center;
 			flex-grow: 1;
-			// height: 50px;
-			background-color: $neoPink;
+			color: $theDarkerBlue;
+			background-color: $yHello;
 			padding: 10px 20px;
 		}
 	}
 	.chatbox-topic {
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-		background-color: $slimeGreen;
+		display: flex;
+		justify-content: center;
+		padding: 10px;
+		background-color: $theDarkerBlue;
+		color: $WWhite;
+		font-size: 18px;
 	}
 }

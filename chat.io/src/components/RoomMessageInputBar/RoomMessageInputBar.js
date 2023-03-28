@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import socket from '../../services/socketService';
-import Button from '../Button';
+import ActionButton from '../ActionButton/ActionButton';
+import { MdSend } from 'react-icons/md';
 import './styles.scss';
 
 const RoomMessageInputBar = () => {
@@ -36,7 +37,9 @@ const RoomMessageInputBar = () => {
 				value={message}
 				onChange={(e) => setMessage(e.target.value)}
 			/>
-			<Button onClick={() => handleSendMsg()}>Send</Button>
+			<ActionButton onClick={() => handleSendMsg()} classes="send-msg">
+				Send <MdSend className="send-icon" />
+			</ActionButton>
 		</div>
 	);
 };

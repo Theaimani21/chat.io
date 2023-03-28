@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import socket from '../../services/socketService';
 import {
 	Button,
@@ -116,5 +117,10 @@ const AddOpDialog = ({ open, close }) => {
 		</Dialog>
 	);
 };
+
+AddOpDialog.propTypes = {
+	open: PropTypes.bool.isRequired,
+	close: PropTypes.func.isRequired
+}
 
 export default AddOpDialog;

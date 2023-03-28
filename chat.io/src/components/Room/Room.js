@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import RoomButton from '../RoomButton/RoomButton';
+import ActionButton from '../ActionButton/ActionButton';
 import socket from '../../services/socketService';
 import './styles.scss';
 import PasswordDialog from '../PasswordDialog/PasswordDialog';
-import { setCurrentChat, setChatHistory, resetAllChatInfo } from '../../slices/chatIoSlice';
+import { setCurrentChat, resetAllChatInfo } from '../../slices/chatIoSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Room = ({ roomName }) => {
@@ -65,6 +66,8 @@ const Room = ({ roomName }) => {
 				setRoomPassword('');
 				setPasswordProtected(true);
 				setPassDialogOpen(true);
+				// navigate to home dashboard
+				navigate('/dashboard/home');
 			} else if (reason === 'banned') {
 				setRoomPassword('');
 
@@ -75,19 +78,22 @@ const Room = ({ roomName }) => {
 
 	// Leave current room and reset state in store
 	const handleLeaveRoom = () => {
-		if (currentChat.length > 0 && availableRooms.includes(currentChat)) {
-			// Notify chat server that user has left room
-			socket.emit('partroom', currentChat);
+		if (currentChat.length > 0) {
+			if (availableRooms.includes(currentChat)) {
+				// Notify chat server that user has left room
+				socket.emit('partroom', currentChat);
+			}
 		}
 
-		// Reset all chat info store states 
-    dispatch(resetAllChatInfo());
-
+		// Reset all chat info store states
+		dispatch(resetAllChatInfo());
 	};
 
 	return (
 		<>
-			<RoomButton onClick={() => handleJoinRoom()}>{roomName}</RoomButton>
+			<ActionButton onClick={() => handleJoinRoom()} classes={'join-room'}>
+				{roomName}
+			</ActionButton>
 			<PasswordDialog
 				open={passDialogOpen}
 				cancel={() => setPassDialogOpen(!passDialogOpen)}
@@ -98,6 +104,10 @@ const Room = ({ roomName }) => {
 			/>
 		</>
 	);
+};
+
+Room.propTypes = {
+	roomName: PropTypes.string.isRequired,
 };
 
 export default Room;

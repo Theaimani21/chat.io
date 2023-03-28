@@ -1,15 +1,17 @@
 @import '../../styles/variables.scss';
 
 .online-user {
+	width: 80%;
 	padding: 8px 15px;
 	border-radius: 20px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	background-color: white;
-  color: black;
+	margin: 5px 0;
+	background-color: lighten($gunMetal, 50%);
+  color: $gunMetal;
+	word-wrap: break-word;
 }
 
 .isUser {
-	color: $tangyOrange;
-
+	color: $WWhite;
+	background-color: $tangyOrange;
 }
+// timberWolf

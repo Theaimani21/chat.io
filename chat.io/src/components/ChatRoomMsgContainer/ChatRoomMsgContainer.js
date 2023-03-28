@@ -12,9 +12,8 @@ const ChatRoomMsgContainer = () => {
 		chatMessages = chatHistory.map((msg) => (
 			<ChatMsg key={msg.timestamp} nick={msg.nick} timestamp={msg.timestamp} msg={msg.message} />
 		));
-	} 
-	else {
-		chatMessages = <h3>No chat messages yet</h3>;
+	} else {
+		chatMessages = <p className="no-chat-msg">No chat messages yet</p>;
 	}
 
 	return <div className="chat-content">{chatMessages}</div>;

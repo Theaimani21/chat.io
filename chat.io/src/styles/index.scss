@@ -39,6 +39,10 @@ button,
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
 	margin: 0;
 }
+.room-btn {
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	
+}
 
 h1 {
 	font-size: 34px;
@@ -60,16 +64,17 @@ h4 {
 	font-weight: 700;
 	// line-height: 26.4px;
 }
-h5, .button {
+h5,
+.button {
 	font-size: 18px;
 	font-weight: 600;
 }
-p, input {
+p,
+input {
 	font-size: 18px;
 	font-weight: 400;
 	// line-height: 20px;
 }
-
 
 // blockquote {
 // 	font-family: Tahoma, Verdana, Segoe, sans-serif;

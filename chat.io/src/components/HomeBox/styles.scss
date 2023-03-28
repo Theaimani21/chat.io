@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+
+.homebox-container {
+	flex-grow: 1;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: $yHello;
+	color: $theDarkerBlue;
+  text-align: center;
+	.homebox-heading {
+		margin: 10px;
+    font-size: 45px;
+	}
+	.chat-bubble-img {
+		width: 60%;
+		height: 60%;
+		object-fit: contain;
+		margin: 20px;
+	}
+}

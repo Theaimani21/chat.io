@@ -2,8 +2,6 @@ import React from 'react';
 // import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import OnlineUser from '../OnlineUser/OnlineUser';
-
-// import socket from '../../services/socketService';
 import './styles.scss';
 
 const OnlineUsers = () => {
@@ -11,7 +9,7 @@ const OnlineUsers = () => {
 	const users = useSelector((state) => state.chatIo.onlineUsers);
 	// Get online users from store
 	const currUser = useSelector((state) => state.chatIo.user);
-	
+
 	// Variable for private chat online users
 	let onlineUsers;
 	// Filter out current user
@@ -22,8 +20,9 @@ const OnlineUsers = () => {
 
 	return (
 		<div className="priv-msg-container">
-			<h2 className="sidebar-heading">Online users</h2>
-			{onlineUsers}
+			<h5 className="priv-msg-subheading">Enter a private chat</h5>
+
+			<div className="priv-msg-list">{onlineUsers}</div>
 		</div>
 	);
 };

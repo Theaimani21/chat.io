@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import socket from '../../services/socketService';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentChat, setChatHistory, resetAllChatInfo, setChatTopic } from '../../slices/chatIoSlice';
-import Button from '../Button';
+import { resetAllChatInfo, setChatTopic } from '../../slices/chatIoSlice';
+import ActionButton from '../ActionButton/ActionButton';
 import ChatRoomSettingsMenu from '../ChatRoomSettingsMenu/ChatRoomSettingsMenu';
+import { MdExitToApp } from 'react-icons/md';
 import './styles.scss';
 
 const ChatRoomTopBar = () => {
@@ -39,11 +40,8 @@ const ChatRoomTopBar = () => {
 			socket.emit('partroom', currentChat);
 		}
 
-		// Change redux store state current room and chat hitsory to none
-		// dispatch(setCurrentChat(''));
-		// dispatch(setChatHistory({ room: '', history: [] }));
-		// dispatch(setChatTopic({ room: '', topic: '' }));
-    dispatch(resetAllChatInfo());
+		// Reset all chat info store states
+		dispatch(resetAllChatInfo());
 
 		// Navitage to home
 		navigate('/dashboard/home');
@@ -56,17 +54,19 @@ const ChatRoomTopBar = () => {
 					<div className="chat-topbar">
 						<h2 className="chatbox-heading">{currentChat}</h2>
 						{roomOps.includes(user) ? <ChatRoomSettingsMenu /> : <></>}
-						<Button onClick={() => handleLeaveRoom()}>Leave Room</Button>
+						<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
+							Leave Room <MdExitToApp className="leave-icon" />
+						</ActionButton>
 					</div>
-					<div className="chatbox-topic">
-						<h4>{chatTopic} </h4>
-					</div>
+					<p className="chatbox-topic">{chatTopic}</p>
 				</>
 			) : (
 				<>
 					<div className="chat-topbar">
 						<h2 className="chatbox-heading">{currentChat}</h2>
-						<Button onClick={() => handleLeaveRoom()}>Leave Room</Button>
+						<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
+							Leave Room <MdExitToApp className="leave-icon" />
+						</ActionButton>
 					</div>
 				</>
 			)}
