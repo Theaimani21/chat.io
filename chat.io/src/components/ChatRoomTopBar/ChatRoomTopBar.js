@@ -25,7 +25,7 @@ const ChatRoomTopBar = () => {
 	useEffect(() => {
 		socket.on('updatetopic', (room, topic, user) => {
 			// Update topic state in store
-			dispatch(setChatTopic({ room: currentChat, topic: topic, user: user }));
+			dispatch(setChatTopic({ room: currentChat.name, topic: topic, user: user }));
 		});
 
 		return () => {
@@ -35,9 +35,9 @@ const ChatRoomTopBar = () => {
 
 	// Leave current room and reset state in store
 	const handleLeaveRoom = () => {
-		if (currentChat.length > 0 && availableRooms.includes(currentChat)) {
+		if (currentChat.type === 'room' && availableRooms.includes(currentChat.name)) {
 			// Notify chat server that user has left room
-			socket.emit('partroom', currentChat);
+			socket.emit('partroom', currentChat.name);
 		}
 
 		// Reset all chat info store states
@@ -49,24 +49,28 @@ const ChatRoomTopBar = () => {
 
 	return (
 		<div className="chat-topbar-container">
-			{availableRooms.includes(currentChat) ? (
+			{currentChat.type === 'room' ? (
 				<>
 					<div className="chat-topbar">
-						<h2 className="chatbox-heading">{currentChat}</h2>
-						{roomOps.includes(user) ? <ChatRoomSettingsMenu /> : <></>}
-						<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
-							Leave Room <MdExitToApp className="leave-icon" />
-						</ActionButton>
+						<h2 className="chatbox-heading">{currentChat.name}</h2>
+						<h5 className="chatbox-topic">{chatTopic}</h5>
+						<div className="chatbox-action-container">
+							{roomOps.includes(user) ? <ChatRoomSettingsMenu /> : <></>}
+							<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
+								Leave Room <MdExitToApp className="leave-icon" />
+							</ActionButton>
+						</div>
 					</div>
-					<p className="chatbox-topic">{chatTopic}</p>
 				</>
 			) : (
 				<>
 					<div className="chat-topbar">
-						<h2 className="chatbox-heading">{currentChat}</h2>
-						<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
-							Leave Room <MdExitToApp className="leave-icon" />
-						</ActionButton>
+						<h2 className="chatbox-heading">{currentChat.name}</h2>
+						<div className="chatbox-action-container">
+							<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
+								Leave Room <MdExitToApp className="leave-icon" />
+							</ActionButton>
+						</div>
 					</div>
 				</>
 			)}

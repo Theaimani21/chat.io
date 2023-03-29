@@ -66,10 +66,10 @@ const NewRoomDialog = ({ open, close }) => {
 					setRoomPass('');
 					// Close modal
 					close();
-					if (currentChat.length > 0 && availableRooms.includes(currentChat)) {
-						socket.emit('partroom', currentChat);
+					if (currentChat.type === 'room' && availableRooms.includes(currentChat.name)) {
+						socket.emit('partroom', currentChat.name);
 					}
-					dispatch(setCurrentChat(roomInfo.room));
+					dispatch(setCurrentChat({name: roomInfo.room, type: 'room'}));
 					dispatch(setChatHistory({ room: roomInfo.room, history: [] }));
 					// ------- might have to update topic as well
 					navigate('/dashboard/chatRoom');

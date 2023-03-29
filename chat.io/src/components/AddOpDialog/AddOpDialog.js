@@ -22,7 +22,7 @@ const AddOpDialog = ({ open, close }) => {
 	const roomUsers = useSelector((state) => state.chatIo.chatUsers);
 
 	// Get state of current room from store
-	const currentRoom = useSelector((state) => state.chatIo.currentChat);
+	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
 	// State for value of user selected 
 	const [value, setValue] = useState('');
@@ -51,7 +51,7 @@ const AddOpDialog = ({ open, close }) => {
 		} 
     else {
 			// Make the user an op of the room
-			socket.emit('op', { user: value, room: currentRoom}, (isOp) => {
+			socket.emit('op', { user: value, room: currentChat.name}, (isOp) => {
 				if (isOp) {
           // add alert if time
 					console.log(value + ' is an op');

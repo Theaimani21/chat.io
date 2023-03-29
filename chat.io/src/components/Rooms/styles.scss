@@ -5,14 +5,14 @@
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	border-bottom: 3px solid $seeThroughtheBlue;
+	// border-bottom: 3px solid $seeThroughtheBlue;
 	margin-top: 20px;
 	.rooms-subheading {
 		width: 90%;
 		text-align: center;
 		margin-bottom: 15px;
 		margin-top: 20px;
-		color: darken($seeThroughtheBlue, 10%);
+		color: lighten($gunMetal, 35%);
 		text-transform: uppercase;
 	}
 	div.rooms-list {

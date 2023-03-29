@@ -5,25 +5,31 @@
 	flex-direction: column;
 	width: 100%;
 	height: auto;
-	background-color: $yHello;
+	background-color: $smoothGrey;
 	.chat-topbar {
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		height: 70px;
 		.chatbox-heading {
 			display: flex;
 			align-items: center;
-			flex-grow: 1;
-			color: $theDarkerBlue;
-			background-color: $yHello;
+			color: $gunMetal;
+			background-color: $smoothGrey;
 			padding: 10px 20px;
 		}
-	}
-	.chatbox-topic {
-		display: flex;
-		justify-content: center;
-		padding: 10px;
-		background-color: $theDarkerBlue;
-		color: $WWhite;
-		font-size: 18px;
+		.chatbox-topic {
+			display: flex;
+			justify-content: center;
+			flex-grow: 1;
+			color: $gunMetal;
+			font-size: 18px;
+		}
+		.chatbox-action-container {
+			height: 100%;
+			display: flex;
+			padding: 5px 8px;
+			gap: 5px;
+		}
 	}
 }

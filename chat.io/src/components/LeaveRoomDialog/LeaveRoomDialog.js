@@ -14,12 +14,12 @@ import './styles.scss';
 const LeaveRoomDialog = ({ open, submit, cancel }) => {
 
 	// Get current room state
-	const currentRoom = useSelector((state) => state.chatIo.currentChat);
+	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
 	return (
 		<div>
 			<Dialog open={open} onClose={cancel}>
-				<DialogTitle>You are in room: {currentRoom} </DialogTitle>
+				<DialogTitle>You are in room: {currentChat.name} </DialogTitle>
 				<DialogContent>
 					<DialogContentText>
 						Would you like to leave to chat you are currently in?

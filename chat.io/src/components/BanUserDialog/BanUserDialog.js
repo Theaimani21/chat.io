@@ -22,7 +22,7 @@ const BanUserDialog = ({ open, close }) => {
 	const roomUsers = useSelector((state) => state.chatIo.chatUsers);
 
 	// Get state of current room from store
-	const currentRoom = useSelector((state) => state.chatIo.currentChat);
+	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
 	// State for value of user selected
 	const [value, setValue] = useState('');
@@ -50,7 +50,7 @@ const BanUserDialog = ({ open, close }) => {
 			setError(true);
 		} else {
 			// Ban the user from the room
-			socket.emit('ban', { user: value, room: currentRoom }, (isBanned) => {
+			socket.emit('ban', { user: value, room: currentChat.name }, (isBanned) => {
 				if (isBanned) {
 					// add alert if time
 					console.log(value + ' is banned from room');

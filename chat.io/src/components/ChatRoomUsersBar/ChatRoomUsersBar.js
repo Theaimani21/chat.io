@@ -28,7 +28,7 @@ const ChatRoomUsersBar = () => {
 	return (
 		<div className="room-users-bar">
 			<div className="users-bar-scroll">
-				<h3 className="room-user-heading">In room</h3>
+				<h3 className="room-user-heading">Users in room</h3>
 				<h5 className="room-user-subheading">Ops</h5>
 				{onlineRoomOps}
 				<h5 className="room-user-subheading second">Others</h5>

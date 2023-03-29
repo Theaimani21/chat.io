@@ -22,7 +22,7 @@ const KickUserDialog = ({ open, close }) => {
 	const roomUsers = useSelector((state) => state.chatIo.chatUsers);
 
 	// Get state of current room from store
-	const currentRoom = useSelector((state) => state.chatIo.currentChat);
+	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
 	// State for value of user selected to be kicked
 	const [value, setValue] = useState('');
@@ -50,7 +50,7 @@ const KickUserDialog = ({ open, close }) => {
 			setError(true);
 		} else {
 			// Kick the user from the room
-			socket.emit('kick', { user: value, room: currentRoom }, (isKicked) => {
+			socket.emit('kick', { user: value, room: currentChat.name }, (isKicked) => {
 				if (isKicked) {
 					// add alert if time
 					console.log(value + ' was kicked');

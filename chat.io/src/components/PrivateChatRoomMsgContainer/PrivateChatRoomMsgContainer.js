@@ -12,8 +12,9 @@ const PrivateChatRoomMsgContainer = () => {
 
 	let privMessages;
 
+	// Get index of private messages info
 	const privateMsgInfoIndex = privateMessages.findIndex(
-		(privMsgInfo) => privMsgInfo.sender === currentChat
+		(privMsgInfo) => privMsgInfo.sender === currentChat.name
 	);
 
 	if (privateMessages.length > 0 && privateMsgInfoIndex !== -1) {

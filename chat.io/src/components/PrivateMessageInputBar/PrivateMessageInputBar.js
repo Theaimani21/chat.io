@@ -18,7 +18,7 @@ const PrivateMessageInputBar = () => {
 		if (message.length > 0) {
 			// Data for sending message to chatIo server
 			const msgData = {
-				nick: currentChat,
+				nick: currentChat.name,
 				message: message,
 			};
 
@@ -30,7 +30,7 @@ const PrivateMessageInputBar = () => {
 					console.log('message was sent');
 					// Update store with new message
 					dispatch(
-						addSentPrivateMessage({ msg: message, timestamp: timestamp, recipient: currentChat })
+						addSentPrivateMessage({ msg: message, timestamp: timestamp, recipient: currentChat.name })
 					);
 				} else {
 					console.log('message was not sent');

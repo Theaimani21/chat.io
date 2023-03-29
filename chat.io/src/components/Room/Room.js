@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import ActionButton from '../ActionButton/ActionButton';
 import socket from '../../services/socketService';
 import './styles.scss';
 import PasswordDialog from '../PasswordDialog/PasswordDialog';
-import { setCurrentChat, resetAllChatInfo } from '../../slices/chatIoSlice';
+import { setCurrentChat, resetAllChatInfo, addBannedRoom } from '../../slices/chatIoSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Room = ({ roomName }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	// State of available room from store
 	const availableRooms = useSelector((state) => state.chatIo.availableRooms);
+	// State of curren room from store
 	const currentChat = useSelector((state) => state.chatIo.currentChat);
+	// State of banned rooms from store
+	const bannedRooms = useSelector((state) => state.chatIo.bannedRooms);
 
 	// State of if password dialog is open
 	const [passDialogOpen, setPassDialogOpen] = useState(false);
@@ -27,9 +31,32 @@ const Room = ({ roomName }) => {
 	// State of error message in password dialog
 	const [errorMessage, setErrorMessage] = useState('');
 
+	// State of classed to send to action button
+	const [buttonClasses, setButtonClasses] = useState('join-room');
+
+	// State of classed to send to action button
+	const [buttonDisabled, setButtonDisabled] = useState(false);
+
+	// Disable or enable button, depending on if user is banned or currently in room
+	useEffect(() => {
+		// If room is banned 
+		if (bannedRooms.includes(roomName)) {
+			setButtonClasses('join-room banned');
+			setButtonDisabled(true);
+		} 
+		// If user is in room
+		else if (currentChat.name === roomName && currentChat.type === 'room') {
+			setButtonClasses('join-room in-room');
+			setButtonDisabled(true);
+		} else {
+			setButtonClasses('join-room');
+			setButtonDisabled(false);
+		}
+	}, [currentChat, bannedRooms]);
+
 	const handleJoinRoom = () => {
 		// Check if user is already in a room
-		if (currentChat.length > 0) {
+		if (currentChat.type === 'room') {
 			handleLeaveRoom();
 		}
 
@@ -53,7 +80,7 @@ const Room = ({ roomName }) => {
 				setErrorMessage('');
 
 				// Change redux store state current room to the joined room
-				dispatch(setCurrentChat(roomInfo.room));
+				dispatch(setCurrentChat({ name: roomInfo.room, type: 'room' }));
 
 				// navigate to chat room
 				navigate('chatRoom');
@@ -70,6 +97,14 @@ const Room = ({ roomName }) => {
 				navigate('/dashboard/home');
 			} else if (reason === 'banned') {
 				setRoomPassword('');
+				setPasswordProtected(false);
+				// // If room is not already in the banned rooms list state, then add it
+				// if (!bannedRooms.includes(roomInfo.room)) {
+				// 	dispatch(addBannedRoom(roomInfo.room));
+				// 	// disable the button
+				// 	setButtonClasses('join-room banned');
+				// 	setButtonDisabled(true);
+				// }
 
 				console.log('banned from this room, creat an alert for this!');
 			}
@@ -78,10 +113,10 @@ const Room = ({ roomName }) => {
 
 	// Leave current room and reset state in store
 	const handleLeaveRoom = () => {
-		if (currentChat.length > 0) {
-			if (availableRooms.includes(currentChat)) {
+		if (currentChat.type === 'room') {
+			if (availableRooms.includes(currentChat.name)) {
 				// Notify chat server that user has left room
-				socket.emit('partroom', currentChat);
+				socket.emit('partroom', currentChat.name);
 			}
 		}
 
@@ -91,7 +126,10 @@ const Room = ({ roomName }) => {
 
 	return (
 		<>
-			<ActionButton onClick={() => handleJoinRoom()} classes={'join-room'}>
+			<ActionButton
+				onClick={() => handleJoinRoom()}
+				disabled={buttonDisabled}
+				classes={buttonClasses}>
 				{roomName}
 			</ActionButton>
 			<PasswordDialog

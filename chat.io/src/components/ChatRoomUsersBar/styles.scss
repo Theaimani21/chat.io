@@ -5,12 +5,14 @@
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	border-left: 5px solid $theDarkerBlue;
+	// border-left: 5px solid $theDarkerBlue;
+	// border-left: 3px solid darken($smoothGrey, 10%);
+
 	color: lighten($gunMetal, 15%);
 	width: 300px;
 	min-width: 200px;
 	height: 100%;
-	background-color: lighten($gunMetal, 70%);
+	background-color: $smoothGrey;
 	.users-bar-scroll {
 		display: flex;
 		flex-direction: column;
@@ -25,16 +27,16 @@
 			text-align: center;
 			margin: 0 auto;
 			width: 100%;
-			background-color: $goGoGreen;
+			background-color: $gunMetal;
 			color: $WWhite;
 			padding: 10px;
 		}
 		.room-user-subheading {
 			margin-bottom: 15px;
 			width: 100%;
-			background-color: lighten($goGoGreen, 10%);
+			background-color: darken($smoothGrey, 10%);
 			padding: 10px;
-			color: $WWhite;
+			// color: $WWhite;
 		}
 		.room-user-subheading.second {
 			margin-top: 15px;

@@ -9,13 +9,13 @@ const RoomMessageInputBar = () => {
 	const [message, setMessage] = useState('');
 
 	// Get current room from store state
-	const currentRoom = useSelector((state) => state.chatIo.currentChat);
+	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
 	const handleSendMsg = () => {
 		if (message.length > 0) {
 			// Data for sending message to chatIo server
 			const msgData = {
-				roomName: currentRoom,
+				roomName: currentChat.name,
 				msg: message,
 			};
 

@@ -13,7 +13,7 @@ import SunglassesEmoji from '../../resources/SunglassesEmoji.png';
 import ThinkingEmoji from '../../resources/ThinkingEmoji.png';
 import DashSidebar from '../../components/DashSidebar/DashSidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { setUserEmoji } from '../../slices/chatIoSlice';
+import { addBannedRoom, setUserEmoji } from '../../slices/chatIoSlice';
 import { setOnlineUsers } from '../../slices/chatIoSlice';
 import AlertPopUp from '../../components/AlertPopUp/AlertPopUp';
 
@@ -55,10 +55,8 @@ const DashboardView = () => {
 	useEffect(() => {
 		// check if user is online on server, if not the navigate back to welcome page
 		if (currentUser.length < 1) {
-			console.log('no current user');
 			navigate('/');
 		} else if (onlineUsers.includes(currentUser) === false) {
-			console.log('not in sever users');
 			navigate('/');
 		}
 	}, [currentUser, onlineUsers]);
@@ -100,6 +98,8 @@ const DashboardView = () => {
 		socket.on('banned', (room, user, banner) => {
 			if (user === currentUser) {
 				navigate('/dashboard/home');
+				// Add room to banned room list state in store
+				dispatch(addBannedRoom(room));
 				// Notify user with alert
 				setAlertMsg('You have been banned from ' + room + ' by ' + banner);
 				setAlertState(true);

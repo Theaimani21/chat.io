@@ -5,12 +5,14 @@
 	flex-direction: column;
 	// height: 100%;
 	flex-grow: 1;
+	
 	.chatbox-inner-container {
 		flex-grow: 1;
 		display: flex;
 		flex-direction: row;
 		height: 100%;
-		border: 3px solid $theDarkerBlue;
+		border-bottom: 3px solid $gunMetal;
+		border-top: 3px solid $gunMetal;
 		overflow: scroll;
 	}
 }

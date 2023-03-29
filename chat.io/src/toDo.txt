@@ -1,22 +1,44 @@
 toDo 
 
 
+--------- implement next ----------------
+
+- SETJA UPP TEST!!!!
+
+- alert for private messages to reciver
+
+- add red color to errors in dialogs
+
+
+--------- Spurja út í, í tíma !!! ----------------
+
+
 - spurja hvort það eigi að vera hægt að annar op breyti öðrum op
 
-- disable room button that you are in or remove it
+
 
 --------- implement later ----------------
-
-- reset chat topic, where you reset chat history
-
-- add 
 
 
 
 --------- implement if time ----------------
 
-- * add topic to chat
+- *op can update/add topic to chat
 
+- op can deop 
+
+- op can set and remove password 
+
+- op can unban 
+
+- make main page emoji a spinner
+
+- alert others of new op, someone is banned or kicked
+
+
+************ KOMIÐ EN ÞARF AÐ TESTA ******************
+
+- þegar notandi skyrir herbergi það sama og hann
 
 
 ************************* KOMIÐ ********************************
@@ -30,8 +52,12 @@ toDo
       and selects another chat then, they shoud leave that 
       chat and then enter the next one
 
+- reset chat topic, where you reset chat history
 
 - chat input bar does not clear after message is sent
+
+- disable room button that you are in or remove it
+
 
 - (you are added to the ops list) when you join a room, you are not added to room user list
 

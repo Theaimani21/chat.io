@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.room-btn {
+.chat-btn {
 	display: inline-block;
 	width: 80%;
 	padding: 15px 20px;
@@ -21,16 +21,17 @@
 		color: darken($gunMetal, 10%);
 	}
 }
-.room-btn.normal-room-btn {
+.chat-btn.normal-btn {
 	box-shadow: inset 0 -10px 0 -4px $BBlack;
 
 	&:active {
 		box-shadow: inset 0 0 0 0;
 	}
 }
-.room-btn.create-room {
-	background-color: $goGoGreen;
-	box-shadow: inset 0 -10px 0 -4px $darkGoGoGreen;
+.chat-btn.create-room {
+	background-color: $tangyOrange;
+	// box-shadow: inset 0 -10px 0 -4px $darkGoGoGreen;
+	box-shadow: 0 6px darken($tangyOrange, 20%);
 	&:hover {
 		cursor: pointer;
 		color: $gunMetal;
@@ -40,7 +41,7 @@
 		box-shadow: inset 0px 10px 0px -4px $skyBlue;
 	}
 }
-.room-btn.join-room {
+.chat-btn.join-room {
 	background-color: $neoPink;
 	box-shadow: inset 0 -10px 0 -4px darken($neoPink, 25%);
 	&:hover {
@@ -52,7 +53,32 @@
 		box-shadow: inset 0px 10px 0px -4px $skyBlue;
 	}
 }
-.room-btn.priv-room {
+.chat-btn.join-room.in-room,
+.chat-btn.priv-room.in-room {
+	background-color: $goGoGreen;
+	box-shadow: 0 0;
+	color: lighten($WWhite, 20%);
+	&:hover {
+		cursor: default;
+		color: lighten($WWhite, 20%);
+	}
+	&:active {
+		box-shadow: 0 0;
+	}
+}
+.chat-btn.join-room.banned {
+	background-color: $veryLightRed;
+	box-shadow: 0 0;
+	color: darken($veryLightRed, 30%);
+	&:hover {
+		cursor: default;
+		color: darken($veryLightRed, 30%);
+	}
+	&:active {
+		box-shadow: 0 0;
+	}
+}
+.chat-btn.priv-room {
 	background-color: $purpleRain;
 	box-shadow: inset 0 -10px 0 -4px darken($purpleRain, 20%);
 	&:hover {
@@ -60,11 +86,10 @@
 		color: darken($gunMetal, 20%);
 	}
 	&:active {
-		// box-shadow: inset 0 0 0 0;
 		box-shadow: inset 0px 10px 0px -4px $skyBlue;
 	}
 }
-.room-btn.enter-chatIo {
+.chat-btn.enter-chatIo {
 	width: 100%;
 	padding: 10px 20px;
 	background-color: $tangyOrange;
@@ -80,7 +105,7 @@
 	}
 }
 
-.room-btn.leave-room {
+.chat-btn.leave-room {
 	width: auto;
 	display: flex;
 	margin: 0;
@@ -104,7 +129,7 @@
 	}
 }
 
-.room-btn.send-msg {
+.chat-btn.send-msg {
 	width: auto;
 	display: flex;
 	margin: 0;
