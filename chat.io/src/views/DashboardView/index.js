@@ -13,7 +13,7 @@ import SunglassesEmoji from '../../resources/SunglassesEmoji.png';
 import ThinkingEmoji from '../../resources/ThinkingEmoji.png';
 import DashSidebar from '../../components/DashSidebar/DashSidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { addBannedRoom, setUserEmoji } from '../../slices/chatIoSlice';
+import { addBannedRoom, resetAllChatInfo, setUserEmoji } from '../../slices/chatIoSlice';
 import { setOnlineUsers } from '../../slices/chatIoSlice';
 import AlertPopUp from '../../components/AlertPopUp/AlertPopUp';
 
@@ -83,6 +83,9 @@ const DashboardView = () => {
 		socket.on('kicked', (room, user, kicker) => {
 			if (user === currentUser) {
 				navigate('/dashboard/home');
+				// reset the all chat info
+				dispatch(resetAllChatInfo());
+
 				// Notify user with alert
 				setAlertMsg('You have been kicked from ' + room + ' by ' + kicker);
 				setAlertState(true);
@@ -100,6 +103,10 @@ const DashboardView = () => {
 				navigate('/dashboard/home');
 				// Add room to banned room list state in store
 				dispatch(addBannedRoom(room));
+
+				// reset the all chat info
+				dispatch(resetAllChatInfo());
+
 				// Notify user with alert
 				setAlertMsg('You have been banned from ' + room + ' by ' + banner);
 				setAlertState(true);

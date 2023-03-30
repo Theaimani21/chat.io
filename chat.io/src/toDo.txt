@@ -5,20 +5,20 @@ toDo
 
 - SETJA UPP TEST!!!!
 
-- alert for private messages to reciver
-
-- add red color to errors in dialogs
 
 
 --------- Spurja út í, í tíma !!! ----------------
 
 
 - spurja hvort það eigi að vera hægt að annar op breyti öðrum op
-
+(setja mögulega á piazza)
 
 
 --------- implement later ----------------
 
+- breyta um mynd a dash main (láta emojis á bubbluni breytast) 
+spurning um að hafa líka bubbluna á welcome síðunni og hafa snúnings 
+hjólið á dash frekar
 
 
 --------- implement if time ----------------
@@ -58,6 +58,7 @@ toDo
 
 - disable room button that you are in or remove it
 
+- add red color to errors in dialogs
 
 - (you are added to the ops list) when you join a room, you are not added to room user list
 
@@ -89,6 +90,7 @@ toDo
 
 - add proptypes to everything that uses props
 
+- alert for private messages to reciver
 
 
 

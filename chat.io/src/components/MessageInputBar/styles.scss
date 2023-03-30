@@ -1,0 +1,15 @@
+
+.msg-bar-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	.chat-input {
+		flex-grow: 1;
+		height: 50px;
+		padding: 0px 10px;
+		border: none;
+	}
+	.button {
+		width: 150px;
+	}
+}
