@@ -10,8 +10,8 @@ const initialStateOptions = {
 	currentChat: { name: '', type: 'none' },
 	chatHistory: [],
 	chatTopic: '',
-	chatUsers: [],
-	chatOps: [],
+	roomUsers: [],
+	roomOps: [],
 	isUserRoomOp: false,
 	bannedRooms: [],
 };
@@ -60,9 +60,9 @@ const chatIoSlice = createSlice({
 			// Check if the action room is the current room
 			if (action.payload.room === state.currentChat.name) {
 				// Update the chat users with the new chat users names
-				state.chatUsers = Object.keys(action.payload.users);
+				state.roomUsers = Object.keys(action.payload.users);
 				// Update the chat ops with the new chat ops names
-				state.chatOps = Object.keys(action.payload.ops);
+				state.roomOps = Object.keys(action.payload.ops);
 			}
 		},
 		addPrivateMessage: (state, action) => {

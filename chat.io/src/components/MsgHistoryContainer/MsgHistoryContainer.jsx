@@ -1,28 +1,24 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import ChatMsg from '../ChatMsg/ChatMsg';
 import './styles.scss';
 
 const MsgHistoryContainer = ({ chatHistory, chatType }) => {
-	// Get current chat history from store
-	// const chatHistory = useSelector((state) => state.chatIo.chatHistory);
-	
-
-	// might have to create use effect
+	// Map chat messages according to if the chat is a room or private chat
 	let chatMessages;
-
 	if (chatHistory.length > 0) {
 		if (chatType === 'priv') {
-      chatMessages = chatHistory.map((msg) => (
-        <ChatMsg key={msg.timestamp} nick={msg.sender} timestamp={msg.timestamp} msg={msg.msg} />
-      ));
+			chatMessages = chatHistory.map((msg) => (
+				<ChatMsg key={msg.timestamp} nick={msg.sender} timestamp={msg.timestamp} msg={msg.msg} />
+			));
 		} else if (chatType === 'room') {
 			chatMessages = chatHistory.map((msg) => (
 				<ChatMsg key={msg.timestamp} nick={msg.nick} timestamp={msg.timestamp} msg={msg.message} />
 			));
 		}
-	} else {
+	}
+	// If no messages the set as info message
+	else {
 		chatMessages = <p className="no-chat-msg">No chat messages yet</p>;
 	}
 

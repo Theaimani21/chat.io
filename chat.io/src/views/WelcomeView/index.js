@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
-import emojiPng from '../../resources/DrunkEmoji.png';
+import ChatBubble from '../../resources/ChatBubble.png';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import socket from '../../services/socketService';
 import { setUser, setOnlineUsers } from '../../slices/chatIoSlice';
@@ -21,6 +21,9 @@ const WelcomeView = () => {
 
 		if (trimedNick === '') {
 			errorMessage = 'You must enter a nickname, please try again!';
+		}
+		if (trimedNick.length > 21) {
+			errorMessage = 'Nickname is to long (max 20 characters), please try again!';
 		}
 
 		if (errorMessage.length > 0) {
@@ -48,7 +51,8 @@ const WelcomeView = () => {
 						navigate('/dashboard/home');
 					});
 				} else {
-					setFailedMessage('Nickname not valid, please try again!');
+					setFailedMessage('Nickname is take, please try again!');
+					setNick('');
 				}
 			});
 		}
@@ -56,11 +60,11 @@ const WelcomeView = () => {
 
 	return (
 		<div className="welcome-view-container container">
-			<h1>Welcome to chat.io</h1>
+			<h1 className="welcome-title">Welcome to CHAT.IO</h1>
 			<div
 				className="default-avatar"
 				style={{
-					backgroundImage: `url('${emojiPng}')`,
+					backgroundImage: `url('${ChatBubble}')`,
 				}}></div>
 			<div className="input-container">
 				<label htmlFor="nickname">Choose your nickname</label>
@@ -72,6 +76,7 @@ const WelcomeView = () => {
 					placeholder="Enter your nickname..."
 					value={nick}
 					onChange={(e) => setNick(e.target.value)}
+					maxLength="20"
 				/>
 				<ActionButton onClick={() => onChooseNickname()} classes="enter-chatIo">
 					Enter

@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "jest": "^27.5.1",
-    "jest-environment-jsdom": "^29.5.0"
+    "jest-environment-jsdom": "^29.5.0",
+    "redux-mock-store": "^1.5.4"
   }
 }

@@ -18,11 +18,16 @@ const NewRoomDialog = ({ open, close }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	// Current chat from store state
 	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
+	// Current rooms from store state
 	const availableRooms = useSelector((state) => state.chatIo.availableRooms);
 
+	// State for room name from input
 	const [roomName, setRoomName] = useState('');
+
+	// State for room password from input
 	const [roomPass, setRoomPass] = useState('');
 
 	// Keep state of validation errors
@@ -30,12 +35,15 @@ const NewRoomDialog = ({ open, close }) => {
 
 	// Validate room name
 	const validateRoom = () => {
-		// array for errors
+		// Array for errors
 		const errors = [];
 
+		// Check length of room name
 		if (roomName.trim().length < 1) {
 			errors.push('Invalid room name');
-		} else if (availableRooms.includes(roomName)) {
+		}
+		// Check if room exists
+		else if (availableRooms.includes(roomName)) {
 			errors.push('Room name id already taken');
 		}
 
@@ -54,7 +62,7 @@ const NewRoomDialog = ({ open, close }) => {
 				room: roomName,
 			};
 
-			// add the password if it has been set
+			// Add the password if it has been set
 			if (roomPass.length > 0) {
 				roomInfo['pass'] = roomPass;
 			}
@@ -71,10 +79,8 @@ const NewRoomDialog = ({ open, close }) => {
 					}
 					dispatch(setCurrentChat({ name: roomInfo.room, type: 'room' }));
 					dispatch(setChatHistory({ room: roomInfo.room, history: [] }));
-					// ------- might have to update topic as well
 					navigate('/dashboard/chatRoom');
 				} else {
-					// Spurning um að breyta þessu þannig að það birtist annað staðar í forminu
 					setFormErrors('Could not create room try again');
 				}
 			});

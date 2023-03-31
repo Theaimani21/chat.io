@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import "./styles/index.scss";
+import './styles/index.scss';
 
 function App() {
 	return (

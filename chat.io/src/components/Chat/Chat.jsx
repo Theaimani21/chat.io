@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import ActionButton from '../ActionButton/ActionButton';
 import socket from '../../services/socketService';
-import './styles.scss';
 import PasswordDialog from '../PasswordDialog/PasswordDialog';
 import { setCurrentChat, resetAllChatInfo } from '../../slices/chatIoSlice';
 import { useNavigate } from 'react-router-dom';
@@ -18,8 +17,6 @@ const Chat = ({ name, type }) => {
 	const currentChat = useSelector((state) => state.chatIo.currentChat);
 	// State of banned rooms from store
 	const bannedRooms = useSelector((state) => state.chatIo.bannedRooms);
-	// Store state of if user has been kicked from room
-	const iskicked = useSelector((state) => state.chatIo.hasBeenKicked);
 
 	// State of classed to send to action button
 	const [buttonClasses, setButtonClasses] = useState('join-room');
@@ -67,7 +64,7 @@ const Chat = ({ name, type }) => {
 				setButtonDisabled(false);
 			}
 		}
-	}, [currentChat, bannedRooms, iskicked]);
+	}, [currentChat, bannedRooms]);
 
 	const handleJoinRoom = () => {
 		// Check if user is already in a room
@@ -77,7 +74,7 @@ const Chat = ({ name, type }) => {
 		}
 		// Check if entering a room chat
 		if (type === 'priv') {
-			// Update current chat store state to private chat users name ---------
+			// Update current chat store state to private chat users name
 			dispatch(setCurrentChat({ name: name, type: 'priv' }));
 
 			// navigate to private chat
@@ -91,8 +88,9 @@ const Chat = ({ name, type }) => {
 			};
 
 			setPassDialogOpen(false);
-
+			// Check if room is password protected
 			if (passwordProtected) {
+				// Add password to room info
 				roomInfo['pass'] = roomPassword;
 			}
 
@@ -152,9 +150,9 @@ const Chat = ({ name, type }) => {
 				open={passDialogOpen}
 				cancel={() => {
 					setPassDialogOpen(false);
-          setPasswordProtected(false);
+					setPasswordProtected(false);
 					setRoomPassword('');
-          setErrorMessage('');
+					setErrorMessage('');
 				}}
 				submit={() => handleJoinRoom()}
 				password={roomPassword}

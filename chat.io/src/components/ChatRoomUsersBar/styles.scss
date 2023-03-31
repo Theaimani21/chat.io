@@ -5,14 +5,13 @@
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	// border-left: 5px solid $theDarkerBlue;
-	// border-left: 3px solid darken($smoothGrey, 10%);
-
-	color: lighten($gunMetal, 15%);
+	border-left: 3px solid lighten($gunMetal, 15%);
 	width: 300px;
 	min-width: 200px;
 	height: 100%;
-	background-color: $smoothGrey;
+	background-color: $gunMetal;
+	color: lighten($gunMetal, 35%);
+
 	.users-bar-scroll {
 		display: flex;
 		flex-direction: column;
@@ -25,18 +24,17 @@
 		overflow-y: scroll;
 		.room-user-heading {
 			text-align: center;
-			margin: 0 auto;
+			margin: 10px auto;
 			width: 100%;
-			background-color: $gunMetal;
-			color: $WWhite;
+			color: lighten($gunMetal, 35%);
 			padding: 10px;
 		}
 		.room-user-subheading {
 			margin-bottom: 15px;
 			width: 100%;
-			background-color: darken($smoothGrey, 10%);
+			background-color: lighten($gunMetal, 35%);
+			color: $gunMetal;
 			padding: 10px;
-			// color: $WWhite;
 		}
 		.room-user-subheading.second {
 			margin-top: 15px;
@@ -46,5 +44,3 @@
 		}
 	}
 }
-// darken($theBlue, 20%)
-// lighten($goGoGreen, 20%)

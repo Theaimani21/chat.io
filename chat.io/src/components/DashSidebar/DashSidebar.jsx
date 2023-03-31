@@ -16,10 +16,13 @@ const DashSidebar = () => {
 	// State of alert message
 	const [alertMsg, setAlertMsg] = useState('');
 
+	// User from store state
 	const user = useSelector((state) => state.chatIo.user);
 
+	// Emoji from store state
 	const userEmoji = useSelector((state) => state.chatIo.userEmoji);
 
+	// Current chat from store state
 	const currentChat = useSelector((state) => state.chatIo.currentChat);
 
 	// Update private message when reviced private message from server

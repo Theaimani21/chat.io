@@ -7,35 +7,29 @@
 	margin: 10px 5px;
 	padding: 20px 25px 20px 30px;
 	border-radius: 10px;
-  border-radius: 50px 40px 40px 15px;
+	border-radius: 50px 40px 40px 15px;
 	.msg {
 		padding: 10px 5px;
 	}
 	.msg-date {
-        font-size: 15px;
+		font-size: 15px;
+		color: lighten($gunMetal, 15%);
 	}
 }
 
 .msg-from-other {
-	background-color: $timberWolf;
-    .msg-sender {
-        color: $gunMetal;
-	}
-	.msg-date {
-        color: grey;
+	background-color: lighten($gunMetal, 55%);
+	.msg-sender {
+		color: $gunMetal;
 	}
 }
 
 .msg-from-user {
 	background-color: $theBlue;
-    .msg-sender {
-        color: $tangyOrange;
+	.msg-sender {
+		color: lighten($tangyOrange, 5%);
 	}
-	
 	.msg-date {
-        // color: rgb(63, 63, 63);
-        color: rgb(63, 63, 63);
-        color: $theDarkerBlue;
-
+		color: darken($gunMetal, 5%);
 	}
 }

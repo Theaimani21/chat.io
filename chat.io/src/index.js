@@ -8,11 +8,11 @@ import store from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-    <ReduxProvider store={store}>
-      <RouterProvider router={router} />
-    </ReduxProvider>
-  // </React.StrictMode>
+	// <React.StrictMode>
+	<ReduxProvider store={store}>
+		<RouterProvider router={router} />
+	</ReduxProvider>
+	// </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

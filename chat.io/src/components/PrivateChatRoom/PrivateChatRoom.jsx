@@ -15,14 +15,13 @@ const PrivateChatRoom = () => {
 	// State of private messages
 	const [privMessages, setPrivMessages] = useState([]);
 
-	//
 	useEffect(() => {
 		// Get index of private messages info
 		const privateMsgInfoIndex = privateMessages.findIndex(
 			(privMsgInfo) => privMsgInfo.sender === currentChat.name
 		);
 
-		//
+		// Check if there are any messages
 		if (privateMsgInfoIndex !== -1) {
 			setPrivMessages([...privateMessages[privateMsgInfoIndex].messages]);
 		} else {

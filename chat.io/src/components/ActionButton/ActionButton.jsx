@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const ActionButton = ({ onClick, classes, disabled, children }) => {
+	// Create classes for button
 	const btnClasses = 'chat-btn ' + classes;
 	return (
 		<button className={btnClasses} onClick={onClick} disabled={disabled}>
@@ -17,7 +18,7 @@ ActionButton.propTypes = {
 };
 
 ActionButton.defaultProps = {
-	classes: 'normal-btn',
+	classes: '',
 	disabled: false,
 };
 

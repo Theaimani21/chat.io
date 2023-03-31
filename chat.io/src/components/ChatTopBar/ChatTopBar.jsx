@@ -12,16 +12,22 @@ const ChatTopBar = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	// Get state of user from store
 	const currentChat = useSelector((state) => state.chatIo.currentChat);
+
+	// Get state of room topic from store
 	const chatTopic = useSelector((state) => state.chatIo.chatTopic);
+
+	// Get state of available rooms from store
 	const availableRooms = useSelector((state) => state.chatIo.availableRooms);
 
 	// Get state of room ops from store
-	const roomOps = useSelector((state) => state.chatIo.chatOps);
+	const roomOps = useSelector((state) => state.chatIo.roomOps);
 
 	// Get state of current user from store
 	const user = useSelector((state) => state.chatIo.user);
 
+	// Listen to topic updates and update topic in store
 	useEffect(() => {
 		socket.on('updatetopic', (room, topic, user) => {
 			// Update topic state in store
@@ -39,10 +45,8 @@ const ChatTopBar = () => {
 			// Notify chat server that user has left room
 			socket.emit('partroom', currentChat.name);
 		}
-
 		// Reset all chat info store states
 		dispatch(resetAllChatInfo());
-
 		// Navitage to home
 		navigate('/dashboard/home');
 	};
@@ -68,7 +72,7 @@ const ChatTopBar = () => {
 						<h2 className="chatbox-heading">{currentChat.name}</h2>
 						<div className="chatbox-action-container">
 							<ActionButton onClick={() => handleLeaveRoom()} classes="leave-room">
-								Leave Room <MdExitToApp className="leave-icon" />
+								Leave private Chat <MdExitToApp className="leave-icon" />
 							</ActionButton>
 						</div>
 					</div>

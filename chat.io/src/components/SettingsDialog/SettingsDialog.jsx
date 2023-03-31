@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import socket from '../../services/socketService';
@@ -19,7 +19,13 @@ import './styles.scss';
 
 const SettingsDialog = ({ open, close, action }) => {
 	// Get state of current user in room from store
-	const roomUsers = useSelector((state) => state.chatIo.chatUsers);
+	const roomUsers = useSelector((state) => state.chatIo.roomUsers);
+
+	// Get state of current ops in room from store
+	const roomOps = useSelector((state) => state.chatIo.roomOps);
+
+	// Get state of current ops in room from store
+	const currentUser = useSelector((state) => state.chatIo.user);
 
 	// Get state of current room from store
 	const currentChat = useSelector((state) => state.chatIo.currentChat);
@@ -32,6 +38,22 @@ const SettingsDialog = ({ open, close, action }) => {
 
 	// State of helper text in selection
 	const [helperText, setHelperText] = useState('');
+
+	// State of available users to change
+	const [availableUsers, setAvailableUsers] = useState([]);
+
+	useEffect(() => {
+		// Check if action is op
+		if (action === 'op') {
+			// Only add users not ops, as oping an op is pointless
+			setAvailableUsers(roomUsers);
+		} else {
+			// Filter out current user from room ops
+			const filterdRoomOps = roomOps.filter((user) => user !== currentUser);
+			// Update the state with room users and ops and filter out current user
+			setAvailableUsers([...roomUsers, ...filterdRoomOps]);
+		}
+	}, [roomUsers, roomOps]);
 
 	// Handle change when user selectes someone
 	const handleRadioChange = (event) => {
@@ -49,13 +71,21 @@ const SettingsDialog = ({ open, close, action }) => {
 			setHelperText('You must select a user!');
 			setError(true);
 		} else {
+			if (roomOps.includes(value) && action === 'ban') {
+				// Make the user an op of the room
+				socket.emit('deop', { user: value, room: currentChat.name }, (isdeoped) => {
+					if (isdeoped) {
+						console.log(value + ' is deoped');
+					} else {
+						console.log(value + ' is not deoped');
+					}
+				});
+			}
 			// Make the user an op of the room
-			socket.emit(action, { user: value, room: currentChat.name }, (isOp) => {
-				if (isOp) {
-					// add alert if time
+			socket.emit(action, { user: value, room: currentChat.name }, (submitted) => {
+				if (submitted) {
 					console.log(value + ' is ' + action + 'ed');
 				} else {
-					// add alert if time
 					console.log(value + ' is not ' + action + 'ed');
 				}
 			});
@@ -68,11 +98,10 @@ const SettingsDialog = ({ open, close, action }) => {
 		}
 	};
 
-	// Variable for users that can be given op privalages
-	let availableUsers;
-
-	if (roomUsers.length > 0) {
-		availableUsers = roomUsers.map((user) => (
+	// Map users that can be given op privalages to variable
+	let mapedAvailableUsers;
+	if (availableUsers.length > 0) {
+		mapedAvailableUsers = availableUsers.map((user) => (
 			<FormControlLabel key={user} value={user} control={<Radio />} label={user} />
 		));
 	}
@@ -88,16 +117,16 @@ const SettingsDialog = ({ open, close, action }) => {
 			}}>
 			<DialogTitle>{action.charAt(0).toUpperCase() + action.slice(1)} a user</DialogTitle>
 			<DialogContent>
-				{roomUsers.length > 0 ? (
+				{availableUsers.length > 0 ? (
 					<form className="settings-form" onSubmit={(e) => handleSubmit(e)}>
-						<FormControl  error={error} variant="standard">
+						<FormControl error={error} variant="standard">
 							<FormLabel id="demo-error-radios">Select a user</FormLabel>
 							<RadioGroup
 								aria-labelledby="demo-error-radios"
 								name="Op User"
 								value={value}
 								onChange={handleRadioChange}>
-								{availableUsers}
+								{mapedAvailableUsers}
 							</RadioGroup>
 							<FormHelperText error={error}>{helperText}</FormHelperText>
 							<Button sx={{ mt: 1 }} type="submit" variant="outlined">

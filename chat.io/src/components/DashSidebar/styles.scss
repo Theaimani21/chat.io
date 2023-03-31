@@ -8,7 +8,7 @@
 	width: 320px;
 	min-width: 320px;
 	background-color: $gunMetal;
-	border-right: 3px solid $gunMetal;
+	border-right: 3px solid lighten($gunMetal, 15%);
 	.sidebar-scroll-container {
 		max-height: 100%;
 		width: 100%;
@@ -25,7 +25,7 @@
 			padding: 20px 0px;
 			background-color: $gunMetal;
 			border-bottom: 3px solid lighten($gunMetal, 15%);
-			color: $WWhite;
+			color: lighten($gunMetal, 35%);
 			.dash-user-heading {
 				text-align: center;
 				width: 95%;

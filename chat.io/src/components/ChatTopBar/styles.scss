@@ -5,7 +5,9 @@
 	flex-direction: column;
 	width: 100%;
 	height: auto;
-	background-color: $smoothGrey;
+	background-color: $gunMetal;
+	border-bottom: 3px solid lighten($gunMetal, 15%);
+	color: lighten($gunMetal, 35%);
 	.chat-topbar {
 		display: flex;
 		justify-content: space-between;
@@ -14,16 +16,18 @@
 		.chatbox-heading {
 			display: flex;
 			align-items: center;
-			color: $gunMetal;
-			background-color: $smoothGrey;
-			padding: 10px 20px;
+			background-color: $gunMetal;
+			padding: 0px 5px;
 		}
 		.chatbox-topic {
 			display: flex;
 			justify-content: center;
 			flex-grow: 1;
 			color: $gunMetal;
-			font-size: 18px;
+			color: lighten($gunMetal, 40%);
+			font-size: 16px;
+			text-align: center;
+			padding: 10px 20px;
 		}
 		.chatbox-action-container {
 			height: 100%;

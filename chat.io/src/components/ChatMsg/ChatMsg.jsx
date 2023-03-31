@@ -4,14 +4,19 @@ import { useSelector } from 'react-redux';
 import './styles.scss';
 
 const ChatMsg = ({ nick, timestamp, msg }) => {
+	// Get current user from store state
 	const user = useSelector((state) => state.chatIo.user);
 
+	// Create chat msg classes
 	let classes = 'msg-container msg-from-other';
 
+	// Check if nick is the current user
 	if (nick === user) {
+		// Change classes to current user classes
 		classes = 'msg-container msg-from-user';
 	}
 
+	// Date option settings
 	const dateOpt = {
 		weekday: 'long',
 		year: 'numeric',
@@ -21,14 +26,14 @@ const ChatMsg = ({ nick, timestamp, msg }) => {
 		minute: '2-digit',
 	};
 
-	const date = new Date(timestamp);
+	// Date string formatted according to date option settings
+	const date = new Date(timestamp).toLocaleDateString('is-IS', dateOpt);
 
-	const formattedDate = date.toLocaleDateString('is-IS', dateOpt);
 	return (
-		<div className={classes}>
+		<div className={classes} data-testid="chat-msg-test">
 			<h5 className="msg-sender">{nick === user ? 'You' : nick}</h5>
 			<h4 className="msg">{msg}</h4>
-			<p className="msg-date">{formattedDate}</p>
+			<p className="msg-date">{date}</p>
 		</div>
 	);
 };

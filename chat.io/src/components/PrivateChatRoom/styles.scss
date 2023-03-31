@@ -10,7 +10,8 @@
 		display: flex;
 		flex-direction: row;
 		height: 100%;
-		border: 3px solid $theDarkerBlue;
+		border-top: 3px solid lighten($gunMetal, 15%);
+		border-bottom: 3px solid lighten($gunMetal, 15%);
 		overflow: scroll;
 	}
 }

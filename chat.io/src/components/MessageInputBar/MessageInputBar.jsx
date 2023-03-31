@@ -62,7 +62,7 @@ const MessageInputBar = ({ socketAction }) => {
 	};
 
 	return (
-		<div className="msg-bar-container">
+		<div className="msg-bar-container" data-testid="msg-bar-container">
 			<input
 				className="chat-input"
 				type="text"
@@ -70,6 +70,7 @@ const MessageInputBar = ({ socketAction }) => {
 				placeholder="Enter message"
 				value={message}
 				onChange={(e) => setMessage(e.target.value)}
+				data-testid="msg-bar-input"
 			/>
 			<ActionButton onClick={() => handleSendMsg()} classes="send-msg">
 				Send <MdSend className="send-icon" />

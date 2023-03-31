@@ -16,7 +16,6 @@ const Rooms = () => {
 	// Keep state of new room dialog
 	const [newRoomDialogOpen, setNewRoomDialogOpen] = useState(false);
 
-	// might also want to call when user joins from main page loggin
 	useEffect(() => {
 		// Create interval so that room list updates every 0.5 seconds
 		const interval = setInterval(() => {
@@ -38,11 +37,13 @@ const Rooms = () => {
 		setNewRoomDialogOpen(!newRoomDialogOpen);
 	};
 
-	const mapRooms = availableRooms.map((key) => <Chat key={key} name={key} type='room'  />);
+	const mapRooms = availableRooms.map((key) => <Chat key={key} name={key} type="room" />);
 
 	return (
 		<div className="rooms-container">
-			<ActionButton onClick={() => setNewRoomDialogOpen(true)} classes={'create-room'}>Create room</ActionButton>
+			<ActionButton onClick={() => setNewRoomDialogOpen(true)} classes={'create-room'}>
+				Create room
+			</ActionButton>
 			<h5 className="rooms-subheading">Join an active room</h5>
 			<div className="rooms-list">{mapRooms}</div>
 			<NewRoomDialog open={newRoomDialogOpen} close={() => toggleNewRoomDialog()} />

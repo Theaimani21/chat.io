@@ -5,19 +5,20 @@ import './styles.scss';
 
 const ChatRoomUsersBar = () => {
 	// Get state of room ops from store
-	const roomOps = useSelector((state) => state.chatIo.chatOps);
+	const roomOps = useSelector((state) => state.chatIo.roomOps);
 
 	// Get state of current user from store
-	const roomUsers = useSelector((state) => state.chatIo.chatUsers);
+	const roomUsers = useSelector((state) => state.chatIo.roomUsers);
 
+	// Map user that are online in room, if none set as info message
 	let onlineUsers;
-
 	if (roomUsers.length > 0) {
 		onlineUsers = roomUsers.map((user) => <ChatRoomUser key={user} user={user} />);
 	} else {
 		onlineUsers = <p className="room-nouser-subheading">No others in room</p>;
 	}
 
+	// Map ops that are in room, if none set as info message
 	let onlineRoomOps;
 	if (roomOps.length > 0) {
 		onlineRoomOps = roomOps.map((user) => <ChatRoomUser key={user} user={user} />);

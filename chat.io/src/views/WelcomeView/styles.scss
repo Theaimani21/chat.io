@@ -3,14 +3,18 @@
 .welcome-view-container {
 	width: 100%;
 	height: 100%;
-	background-color: $smoothGrey;
+	background-color: $gunMetal;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	color: lighten($gunMetal, 35%);
+	.welcome-title {
+		font-size: 45px;
+	}
 	.default-avatar {
-		height: 350px;
-		width: 350px;
+		height: 400px;
+		width: 400px;
 		background-size: contain;
 		background-repeat: no-repeat;
 		margin: 20px;
@@ -23,7 +27,7 @@
 		align-items: center;
 		label {
 			font-weight: bold;
-			font-size: 22px;
+			font-size: 28px;
 			display: block;
 			margin: 5px 0;
 		}

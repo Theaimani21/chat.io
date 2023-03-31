@@ -3,22 +3,27 @@ toDo
 
 --------- implement next ----------------
 
-- SETJA UPP TEST!!!!
+- in userbar when user is banned when he is an op then he still is in user bar
 
+- SETJA UPP TEST!!!!
+	* settings dialog
+	* pass dialog
+	* other dialogs
+
+- Bugg í test fyrir online user
+
+TEST KOMIN
+* Home Box
+* Chat Room User
+* Chat Msg 
+* Action Button
 
 
 --------- Spurja út í, í tíma !!! ----------------
 
 
-- spurja hvort það eigi að vera hægt að annar op breyti öðrum op
-(setja mögulega á piazza)
-
-
 --------- implement later ----------------
 
-- breyta um mynd a dash main (láta emojis á bubbluni breytast) 
-spurning um að hafa líka bubbluna á welcome síðunni og hafa snúnings 
-hjólið á dash frekar
 
 
 --------- implement if time ----------------
@@ -30,10 +35,6 @@ hjólið á dash frekar
 - op can set and remove password 
 
 - op can unban 
-
-- make main page emoji a spinner
-
-- alert others of new op, someone is banned or kicked
 
 
 ************ KOMIÐ EN ÞARF AÐ TESTA ******************
@@ -58,10 +59,18 @@ hjólið á dash frekar
 
 - disable room button that you are in or remove it
 
+- make main page emoji a spinner
+
+- alert others of new op, someone is banned or kicked
+
 - add red color to errors in dialogs
 
 - (you are added to the ops list) when you join a room, you are not added to room user list
 
+- laga style á tökkum eftir nýja bakgrunn og breyta right border a side bar,
+	kanski breyta topbar backgrunn í gun metal ?
+
+- breyta þannig að op get kick og ban á aðra Operators
 
 - (you become a op, when you leave you are no longer an op)
     - when user creates a room 
@@ -93,6 +102,12 @@ hjólið á dash frekar
 - alert for private messages to reciver
 
 
+- spurja hvort það eigi að vera hægt að annar op breyti öðrum op
+(setja mögulega á piazza)
+
+- breyta um mynd a dash main (láta emojis á bubbluni breytast) 
+spurning um að hafa líka bubbluna á welcome síðunni og hafa snúnings 
+hjólið á dash frekar
 
 ================================================================
 // [
@@ -107,3 +122,57 @@ hjólið á dash frekar
 			//  },
 			//  ...
 			// ]
+================================================================
+
+
+	  
+	
+* Select a nickname - 0.5
+  
+* Nickname validation - 0.5
+  
+* Display all chat rooms - 1
+ - After the user has been identified, he/she should 
+ see a list of chat rooms already active
+
+* Create a new room - 0.5
+	- A user should be able to create a new room
+  
+* Join a room - 0.5
+	- A user should be able to join a room
+  
+* Leave a room - 0.25
+	- A user should be able to leave a room
+
+* Send messages to a room - 0.5
+	- When a user is a part of a room, he should be able to send messages to the room
+  
+* See all previous messages in a room - 0.5
+	- When a user is a part of a room, he should be able to see all previous messages in a room
+  
+* Live updates within a room - 0.5
+	- All new messages appear in real-time without having to refresh
+  
+* Send a private message - 1.25
+	- A user should be able to send a private message to a user
+
+* Kick user - 0.5
+	- An operator can kick another user
+  
+* Ban user - 0.5
+	- An operator can ban another user. The user cannot rejoin the room.
+  
+* User is notified when kicked / banned - 0.5
+	- A user is notified when he is kicked / banned and should be redirected out of the room.
+  
+* Operators can give ops - 1.5
+	- An operator of a room can give other users within the room an op
+  
+* Tidiness - 0.5
+	- Each component should reside in a single folder, 
+	where the implementation of the component is and 
+	a test for each component. 
+	- Components tested and using prop types.
+  
+* External dependencies with NPM - 0.5
+ 	- All dependencies are installed using NPM
